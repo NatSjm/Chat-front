@@ -1,9 +1,10 @@
+export const primaryPurple = '#383351';
+export const secondaryPurple = '#464668';
+export const lightPurple = '#706198';
+export const boundaryPurple = '#665D8B';
+export const fontColor = '#786D86';
+export const white = '#FFFFFE';
+export const blue = '#0A7FFB';
+export const green = '#31C96E';
+export const borderGrey = '#4B4B66';
 
-export const primary = 'purple';
-export const error = 'red';
-export const white = '#FFF';
-export const blue = 'rgb(94, 94, 243)';
-export const grey = '#EEE';
-export const lime = 'rgba(158, 253, 56, .8)';
-export const major = 'rgb(23, 24, 32)';
-export const accent = '#61DAFB';
