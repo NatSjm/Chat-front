@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import {Primary} from 'components/Block';
-import {PaperClip, Smile, SendArrow} from 'components/Icon';
+import {FileUploadButton, MessageSendButton, EmojiButton} from 'components/Button';
 import {Primary as PrimaryInput} from 'components/Input';
 
 
@@ -38,12 +38,12 @@ const Wrapper = styled(Primary)`
 
 const Footer = () => (
     <Wrapper>
-        <PaperClip/>
+        <FileUploadButton/>
         <PrimaryInput
             placeholder="Type your message..."
             type="text"/>
-        <Smile/>
-        <SendArrow/>
+        <EmojiButton/>
+        <MessageSendButton/>
     </Wrapper>
 
 );

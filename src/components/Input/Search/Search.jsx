@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Primary from '../Primary.jsx';
 import {Primary as PrimaryWrapper} from 'components/Block';
-import {Search as SearchIcon} from 'components/Icon';
+import {SearchButton} from 'components/Button';
 
 
 const Wrapper = styled(PrimaryWrapper)`
@@ -14,13 +14,13 @@ padding-right:   30px;
 border-radius:   40px;
 height:          48px;
 font-size:       1rem;
-& button{
-margin-right: 12px;
-}
-& input{
-flex-grow: 1;
-font-size: 1rem;
-}
+    & button{
+    margin-right:    12px;
+    }
+    & input{
+    flex-grow: 1;
+    font-size: 1rem;
+    }
 ${({theme: {colors}}) => {
     return `
 			border: 2px solid ${colors.lightPurple};
@@ -31,7 +31,7 @@ ${({theme: {colors}}) => {
 `;
 const Search = () => (
     <Wrapper>
-        <SearchIcon/>
+        <SearchButton/>
         <Primary type="search" placeholder="Search"/>
     </Wrapper>
 );

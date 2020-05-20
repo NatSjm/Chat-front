@@ -5,7 +5,7 @@ import {ChatHeaderWrapper} from 'components/ChatComponents';
 import React from "react";
 import Footer from './Footer'
 import {AvatarSmall} from 'components/Image';
-import {Video} from 'components/Icon';
+import {CameraButton} from 'components/Button';
 import {Headline3, Paragraph} from 'components/Text';
 
 import {BriefTextBlock} from 'components/Block';
@@ -31,7 +31,7 @@ const DialogSection = () => (
                     online
                 </Paragraph>
             </BriefTextBlock>
-            <Video/>
+            <CameraButton/>
         </ChatHeaderWrapper>
         <Container>
 

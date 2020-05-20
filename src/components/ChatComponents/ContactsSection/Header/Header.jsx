@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import  ChatHeaderWrapper  from 'components/ChatComponents/ChatHeaderWrapper.jsx';
 import {Search} from 'components/Input';
-import {Hamburger} from 'components/Icon';
+import {MenuButton} from 'components/Button';
 
 
 const Wrapper = styled(ChatHeaderWrapper)`
@@ -12,7 +12,7 @@ const Wrapper = styled(ChatHeaderWrapper)`
 `;
 const ContactsHeader = () => (
     <Wrapper>
-        <Hamburger/>
+        <MenuButton/>
         <Search/>
     </Wrapper>
 );

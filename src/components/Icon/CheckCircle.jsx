@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import Icon from "./Icon";
-import {IconButton} from 'components/Button';
 import React from "react";
 
 const Wrapper = styled.div`
-	width: 26px;
-	height: 26px;
+	width: 24px;
+	height: 24px;
 	font-size: 0.7rem;
 	border-radius: 50%;
 	display: flex;

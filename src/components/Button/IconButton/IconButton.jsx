@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from './Button.jsx';
+import Button from '../Button.jsx';
 
 const IconButton = styled(Button)`
 	background: transparent;
