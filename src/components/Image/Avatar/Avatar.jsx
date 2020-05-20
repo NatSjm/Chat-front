@@ -8,23 +8,23 @@ import avatarDefault from 'img/avatarDefault.jpg'
 const Wrapper = styled(Block)`
 flex-shrink: 0;
 z-index: 3;
-width: 60px;
-height: 60px;
+width: 84px;
+height: 84px;
 border-radius: 50%;
 position: relative;
 overflow: visible;
-box-sizing: content-box;
+
  ${({theme: {colors}}) => {
     return `
-     border: 2px solid ${colors.boundaryPurple};  
+     border: 4px solid ${colors.lightPurple};  
     `
 }}
 //position: relative;
 & div{
 z-index: 10;
 position: absolute;
-bottom: 0;
-right: 0;
+bottom: -5px;
+right: -5px;
 }
 & img{
 z-index:5;

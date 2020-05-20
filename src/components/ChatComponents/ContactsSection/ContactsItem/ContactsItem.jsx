@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {Primary} from 'components/Block';
 import {Avatar} from 'components/Image';
-import ContactsItemInfo from './ContactItemInfo.jsx';
+import {BriefTextBlock} from 'components/Block';
 import {Paragraph, Headline3} from 'components/Text';
 
 
@@ -20,7 +20,7 @@ margin-bottom: 10px;
 const ContactsItem = () => (
     <Wrapper>
         <Avatar/>
-        <ContactsItemInfo>
+        <BriefTextBlock>
             <Headline3>
                 Michael Huddson
             </Headline3>
@@ -28,7 +28,7 @@ const ContactsItem = () => (
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. At magnam molestiae ratione soluta? At commodi
                 dolor doloribus ea earum excepturi fugiat hic, neque nisi nostrum, omnis optio, praesentium quasi quia?
             </Paragraph>
-        </ContactsItemInfo>
+        </BriefTextBlock>
     </Wrapper>
 );
 

@@ -6,7 +6,7 @@ import {Primary as PrimaryInput} from 'components/Input';
 
 
 const Wrapper = styled(Primary)`
-    min-height: 86px;
+    min-height: 90px;
     border-top: 2px solid rgba(120, 109, 134, 0.2);
     padding: 20px 30px;
     flex-direction: row;

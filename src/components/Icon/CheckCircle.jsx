@@ -4,9 +4,9 @@ import {IconButton} from 'components/Button';
 import React from "react";
 
 const Wrapper = styled.div`
-	width: 1rem;
-	height: 1rem;
-	font-size: 0.6rem;
+	width: 26px;
+	height: 26px;
+	font-size: 0.7rem;
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;

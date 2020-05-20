@@ -4,7 +4,7 @@ import Input from './Input.jsx';
 const Primary = styled(Input)`
       background-color: inherit;
       border:           none;
-      height:           40px;
+      
       color:            white;
       flex-grow: 1;
        &::-webkit-input-placeholder {

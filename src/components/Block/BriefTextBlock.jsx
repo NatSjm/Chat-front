@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {Primary} from 'components/Block';
+import Primary from './Primary.jsx';
 
-const ContactItemInfo = styled(Primary)`
+const BriefTextBlock = styled(Primary)`
 margin-left: 40px;
 margin-right: 40px;
 flex-direction: column;
@@ -14,10 +14,10 @@ justify-content: space-between;
   white-space: nowrap;
   width: 100%;
     ${({theme: {colors}}) => {
-    return `color: ${colors.fontColor};   
+    return `color: ${colors.fontColor};
 `
 }}
 }
 `;
 
-export default ContactItemInfo;
+export default BriefTextBlock;

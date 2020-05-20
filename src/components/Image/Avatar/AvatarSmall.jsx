@@ -7,14 +7,13 @@ import avatarDefault from 'img/avatarDefault.jpg'
 const Wrapper = styled(Block)`
 flex-shrink: 0;
 z-index: 3;
-width: 60px;
-height: 60px;
+width: 84px;
+height: 84px;
 border-radius: 50%;
-box-sizing: border-box;
 overflow: visible;
  ${({theme: {colors}}) => {
     return `
-     border: 2px solid ${colors.borderGrey};  
+     border: 4px solid ${colors.borderGrey};  
     `
 }}
 //position: relative;
