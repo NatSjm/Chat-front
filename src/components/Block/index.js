@@ -1,17 +1,19 @@
 import Block from './Block.jsx';
-import Centered from './Centered.jsx';
-import Flex from './Flex.jsx';
-import Primary from './Primary.jsx';
-import Gydeline from './Gydeline.jsx';
-import Container from './Container.jsx';
+import Centered from './Centered';
+import Flex from './Flex';
+import Primary from './Primary';
+import TwoColumnFlex from './TwoColumnFlex';
 import BriefTextBlock from './BriefTextBlock';
+import PageWrapper, {ChatPageWrapper} from './PageWrapper';
+
 
 export default Block;
 export {
-	Gydeline,
+	TwoColumnFlex,
 	Flex,
     Centered,
 	Primary,
-	Container,
-	BriefTextBlock
+	BriefTextBlock,
+	PageWrapper,
+	ChatPageWrapper
 };

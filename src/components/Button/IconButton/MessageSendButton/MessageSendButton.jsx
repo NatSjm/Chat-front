@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faLocationArrow} from '@fortawesome/free-solid-svg-icons'
 import IconButton from '../IconButton.jsx';
-import {SendArrow} from 'components/Icon'
 
 
 const Wrapper = styled(IconButton)`
 		border-radius: 50%;
 	${({theme: {icons: {sendArrow}}}) => {
-    return `
+	return `
     width: ${sendArrow.wrapperSize};
 	height: ${sendArrow.wrapperSize};
     background-color: ${sendArrow.backgroundColor};
@@ -16,12 +17,15 @@ const Wrapper = styled(IconButton)`
     & svg{
     color: ${sendArrow.color};
     }
+    &:hover{
+    background-color: ${sendArrow.hoverBackground};
+    }
  `
 }}
 `;
 const MessageSendButton = () => (
-    <Wrapper>
-        <SendArrow/>
-    </Wrapper>
+	<Wrapper>
+		<FontAwesomeIcon icon={faLocationArrow}/>
+	</Wrapper>
 );
 export default MessageSendButton;

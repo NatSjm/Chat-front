@@ -16,11 +16,11 @@ padding: 0;
   body {
     height: 100%;
     margin: 0;
-    background-color: ${props => (props.primary ? props.theme.colors.primaryPurple : props.theme.colors.secondaryPurple)};  
+    background-color: #E7EBF0;
     color: ${props => props.theme.colors.white};  
-    font-family: Robotto sans-serif;
-    font-size: 18px;
-    
+    font-family: Roboto  sans-serif;
+    font-weight: 300;
+    font-size: 18px;   
       }
 `;
 

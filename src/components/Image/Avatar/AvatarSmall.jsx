@@ -16,7 +16,7 @@ overflow: visible;
      border: 4px solid ${colors.borderGrey};  
     `
 }}
-//position: relative;
+
 
 & img{
 z-index:5;

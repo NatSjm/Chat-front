@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import IconButton from '../IconButton.jsx';
-import {Search} from 'components/Icon'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
+
 
 
 const Wrapper = styled(IconButton)`	
@@ -9,7 +11,7 @@ const Wrapper = styled(IconButton)`
 `;
 const SearchButton = () => (
     <Wrapper>
-        <Search/>
+        <FontAwesomeIcon icon={faSearch}/>
     </Wrapper>
 );
 

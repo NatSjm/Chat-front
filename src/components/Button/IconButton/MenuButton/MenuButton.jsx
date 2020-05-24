@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import IconButton from '../IconButton.jsx';
-import {Hamburger} from 'components/Icon'
+
 
 const Wrapper = styled(IconButton)`
 	width: 48px;
@@ -20,7 +22,7 @@ const Wrapper = styled(IconButton)`
 `;
 const MenuButton = () => (
     <Wrapper>
-        <Hamburger/>
+        <FontAwesomeIcon icon={faBars}/>
     </Wrapper>
 );
 export default MenuButton;

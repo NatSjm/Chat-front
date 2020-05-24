@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import IconButton from '../IconButton.jsx';
-import {PaperClip} from 'components/Icon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperclip } from '@fortawesome/free-solid-svg-icons'
 
 
 const Wrapper = styled(IconButton)`
@@ -10,7 +11,7 @@ font-size: 1.6rem;
 `;
 const FileUploadButton = () => (
     <Wrapper>
-        <PaperClip/>
+        <FontAwesomeIcon icon={faPaperclip}/>
     </Wrapper>
 );
 export default FileUploadButton;

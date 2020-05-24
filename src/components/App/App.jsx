@@ -1,20 +1,14 @@
 import React from 'react';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {faCheck, faBars, faSearch, faPaperclip, faVideo, faLocationArrow} from '@fortawesome/free-solid-svg-icons';
-import {far} from '@fortawesome/free-regular-svg-icons';
-import {Gydeline} from 'components/Block';
-import {DialogSection, ContactsSection} from 'components/ChatComponents';
-
-
-library.add(faCheck, faBars, faSearch, faPaperclip, faVideo, far, faLocationArrow);
+import {ChatPageWrapper} from 'components/Block';
+import {DialogSection, DialogsListSection} from 'sections';
 
 const App = () => {
 
     return <React.Fragment>
-        <Gydeline>
-            <ContactsSection/>
+        <ChatPageWrapper>
+            <DialogsListSection/>
             <DialogSection/>
-        </Gydeline>
+        </ChatPageWrapper>
     </React.Fragment>;
 };
 

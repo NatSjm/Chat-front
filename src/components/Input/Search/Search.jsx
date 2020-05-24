@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Primary from '../Primary.jsx';
+import PrimaryInput from '../Primary.jsx';
 import {Primary as PrimaryWrapper} from 'components/Block';
 import {SearchButton} from 'components/Button';
 
@@ -22,7 +22,7 @@ font-size:       1rem;
     font-size: 1rem;
     }
 ${({theme: {colors}}) => {
-    return `
+	return `
 			border: 2px solid ${colors.lightPurple};
 			background-color: ${colors.primaryPurple};		
 				`
@@ -30,10 +30,12 @@ ${({theme: {colors}}) => {
 
 `;
 const Search = () => (
-    <Wrapper>
-        <SearchButton/>
-        <Primary type="search" placeholder="Search"/>
-    </Wrapper>
+	<Wrapper>
+		<SearchButton/>
+		<PrimaryInput
+			type="search"
+			placeholder="Search"/>
+	</Wrapper>
 );
 
 export default React.memo(Search);

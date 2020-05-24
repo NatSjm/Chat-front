@@ -11,5 +11,5 @@ export {
     SearchButton,
     MessageSendButton,
     EmojiButton,
-    CameraButton
+    CameraButton,
 };

@@ -1,22 +1,8 @@
-import Icon from './Icon.jsx';
-import Hamburger from './Hamburger.jsx';
-import Search from './Search.jsx';
-import CheckCircle from './CheckCircle.jsx'
-import Check from './Check.jsx'
-import Smile from './Smile.jsx'
-import SendArrow from './SendArrow.jsx'
-import PaperClip from './PaperClip.jsx'
-import Video from './Video.jsx'
+import Check, {CheckCircle} from './Check';
 
-
-export default Icon;
+export default Check;
 export {
-    Hamburger,
-    Search,
     CheckCircle,
     Check,
-    Smile,
-    SendArrow,
-    PaperClip,
-    Video
+
 };

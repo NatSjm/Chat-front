@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import IconButton from '../IconButton.jsx';
-import {Smile} from 'components/Icon'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {far} from '@fortawesome/free-regular-svg-icons';
 
+import IconButton from '../IconButton.jsx';
 
 const Wrapper = styled(IconButton)`
 	font-size :  2rem;
 `;
 const EmojiButton = () => (
     <Wrapper>
-        <Smile/>
+        <FontAwesomeIcon icon={far.faSmile}/>
     </Wrapper>
 );
 export default EmojiButton;
