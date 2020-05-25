@@ -1,7 +1,15 @@
 import React from 'react';
+import {ChatPageWrapper} from 'components/Block';
+import {DialogSection, DialogsListSection} from 'sections';
 
 const App = () => {
-	return <React.Fragment />;
+
+    return <React.Fragment>
+        <ChatPageWrapper>
+            <DialogsListSection/>
+            <DialogSection/>
+        </ChatPageWrapper>
+    </React.Fragment>;
 };
 
 export default React.memo(App);
