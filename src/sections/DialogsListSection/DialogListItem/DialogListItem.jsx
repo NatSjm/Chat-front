@@ -20,7 +20,7 @@ margin-bottom: 10px;
 `;
 const DialogListItem = () => (
     <Wrapper>
-        <Avatar/>
+        <Avatar showOnline/>
         <BriefTextBlock>
             <Headline3>
                 Michael Huddson

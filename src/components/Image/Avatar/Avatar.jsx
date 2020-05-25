@@ -13,18 +13,15 @@ height: 84px;
 border-radius: 50%;
 position: relative;
 overflow: visible;
+border: 4px solid  ${({theme: {colors}, single}) => single ? colors.borderGrey : colors.lightPurple}};
 
- ${({theme: {colors}}) => {
-    return `
-     border: 4px solid ${colors.lightPurple};  
-    `
-}}
 //position: relative;
 & div{
 z-index: 10;
 position: absolute;
 bottom: -5px;
-right: -5px;
+right: -1px;
+display: ${({ showOnline }) => showOnline ? 'flex' : 'none'};
 }
 & img{
 z-index:5;
@@ -33,8 +30,8 @@ height: 100%;
 border-radius: 50%; 
 }
 `;
-const Avatar = () => (
-    <Wrapper>
+const Avatar = (props) => (
+    <Wrapper {...props}>
         <Image src={avatarDefault}/>
         <CheckCircle/>
     </Wrapper>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import {Primary} from 'components/Block';
 import {FileUploadButton, MessageSendButton, EmojiButton} from 'components/Button';
-import {Primary as PrimaryInput} from 'components/Input';
+import {MessageTextArea} from 'components/TextArea';
 
 
 const Wrapper = styled(Primary)`
@@ -18,7 +18,7 @@ const Wrapper = styled(Primary)`
      margin-left: 20px;
      }
     }
-    & input{
+    & textarea{
     font-size: 1.2rem;
     padding-right: 20px;
     padding-left: 20px;
@@ -36,9 +36,9 @@ const Wrapper = styled(Primary)`
 const Footer = () => (
     <Wrapper>
         <FileUploadButton/>
-        <PrimaryInput
+        <MessageTextArea
             placeholder="Type your message..."
-            type="text"/>
+            />
         <EmojiButton/>
         <MessageSendButton/>
     </Wrapper>

@@ -6,7 +6,7 @@ import ContentWrapper from './ContentWrapper';
 import ChatHeaderWrapper from 'components/ChatHeader';
 
 import Footer from './Footer';
-import {AvatarSmall} from 'components/Image';
+import {Avatar} from 'components/Image';
 import {CameraButton} from 'components/Button';
 import {Headline3, Paragraph} from 'components/Text';
 import ChatMessageBox from './ChatMessageBox';
@@ -24,7 +24,7 @@ const Wrapper = styled(Block)`
 const DialogSection = () => (
 	<Wrapper>
 		<ChatHeaderWrapper>
-			<AvatarSmall/>
+			<Avatar single/>
 			<BriefTextBlock>
 				<Headline3>
 					Michael Huddson

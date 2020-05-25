@@ -1,6 +1,8 @@
 import * as colors from './../colors.js'
 const myMessageBox = `
+
 background-color: ${colors.transparentLightPurple};
+
 align-self: flex-end;
 &::after,
 &::before{
@@ -18,7 +20,7 @@ align-self: flex-end;
 
 }
 &::before{
-	margin-right: -10px;
+ 	margin-right: -10px;
 	border-left-color: ${colors.lightPurple};
 }
 
