@@ -12,6 +12,7 @@ const Wrapper = styled(Primary)`
     padding: 20px 30px;
     flex-direction: row;
     width: 100%;
+    
      & button{
      margin-right: 20px;
      &:last-of-type{

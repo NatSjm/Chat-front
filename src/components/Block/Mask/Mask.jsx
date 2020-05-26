@@ -13,7 +13,7 @@ const Mask = styled(Primary)`
     bottom: 0;
     z-index: 50;
     padding: 10px;   
-    //display: none;
+   // display: none;
 `;
 
 export default Mask;

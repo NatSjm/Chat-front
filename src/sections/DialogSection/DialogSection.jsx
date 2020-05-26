@@ -1,19 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-import Block from 'components/Block';
-import {Flex, BriefTextBlock} from 'components/Block';
+import React from 'react';
+import styled from 'styled-components';
+import  Block, {Flex, BriefTextBlock, Mask} from 'components/Block';
 import ContentWrapper from './ContentWrapper';
 import ChatHeaderWrapper from 'components/ChatHeader';
-
 import Footer from './Footer';
 import {Avatar} from 'components/Image';
-import {CameraButton} from 'components/Button';
+import {CameraButton, IconButton} from 'components/Button';
 import {Headline3, Paragraph} from 'components/Text';
 import ChatMessageBox from './ChatMessageBox';
 import Check from 'components/Icon';
 import {DialogScroll} from 'components/Scroll';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 import { Dialogs as ContextDialogs } from 'sections/DialogsListSection/DialogsListSection.jsx';
-import { 
+import {
 	messages as fetchMessages,
 } from 'fetches';
 
@@ -62,14 +62,21 @@ const DialogSection = () => {
 						<Check />
 						<span>{item.createdAt}</span>
 					</Flex>
+					<Mask>
+						<IconButton>
+							<FontAwesomeIcon icon={faPencilAlt}/>
+						</IconButton>
+						<IconButton>
+							<FontAwesomeIcon icon={faTrashAlt}/>
+						</IconButton>
+					</Mask>
 				</ChatMessageBox>;
 			})}
 			</DialogScroll>
 		</ContentWrapper>
-		<Footer 
+		<Footer
 			dialogId={state.dialogId}
 			action={setState}>
-
 		</Footer>
 	</Wrapper>
 };

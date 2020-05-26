@@ -12,7 +12,7 @@ const Wrapper = styled(Block)`
 	 padding: 20px;
 	 position: relative;
 	 
-	${({theme: {messageBox}, myMessage},) => {
+	${({theme: {messageBox}, myMessage}) => {
 	return myMessage ? messageBox.myMessageBox : messageBox.responseMessageBox;
 }}
    	 & > div:first-of-type{
@@ -20,11 +20,12 @@ const Wrapper = styled(Block)`
 	    justify-content: space-between;
 	    align-items: baseline;
 	    width: 76px;
+	    overflow: hidden;
 		text-transform: uppercase;		
 		position: absolute;
         bottom: -30px;       
 		color: ${({theme: {colors}}) => colors.fontColor}; 
-		}}   ;
+		}} 	;
 	& > div:last-of-type{
 		width: 46px;
 		& button{
