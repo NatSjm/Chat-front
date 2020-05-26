@@ -5,6 +5,7 @@ import Primary from './Primary';
 import TwoColumnFlex from './TwoColumnFlex';
 import BriefTextBlock from './BriefTextBlock';
 import PageWrapper, {ChatPageWrapper} from './PageWrapper';
+import Mask from './Mask';
 
 
 export default Block;
@@ -15,5 +16,6 @@ export {
 	Primary,
 	BriefTextBlock,
 	PageWrapper,
-	ChatPageWrapper
+	ChatPageWrapper,
+	Mask
 };

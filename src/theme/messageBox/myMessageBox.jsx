@@ -1,7 +1,7 @@
 import * as colors from './../colors.js'
 const myMessageBox = `
-
 background-color: ${colors.transparentLightPurple};
+padding-left: 50px;
 
 align-self: flex-end;
 &::after,
@@ -24,9 +24,14 @@ align-self: flex-end;
 	border-left-color: ${colors.lightPurple};
 }
 
-& div{
+& > div:first-of-type{
     flex-direction: row-reverse;
     right: 0;
-}
+};
+
+& > div:last-of-type{
+ 	left: 0;
+ 	border-radius: 6px 0 0 6px;
+};
 `;
 export default myMessageBox;
