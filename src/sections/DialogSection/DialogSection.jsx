@@ -12,6 +12,10 @@ import {Headline3, Paragraph} from 'components/Text';
 import ChatMessageBox from './ChatMessageBox';
 import Check from 'components/Icon';
 import {DialogScroll} from 'components/Scroll';
+import { Dialogs as ContextDialogs } from 'sections/DialogsListSection/DialogsListSection.jsx';
+import { 
+	messages as fetchMessages,
+} from 'fetches';
 
 const Wrapper = styled(Block)`
      ${({theme: {colors}}) => {
@@ -21,8 +25,21 @@ const Wrapper = styled(Block)`
         `;
 }}
     `;
-const DialogSection = () => (
-	<Wrapper>
+const DialogSection = () => {
+	const dialogs = React.useContext(ContextDialogs);
+	const [ state, setState ] = React.useState(() => ({
+		data: [],
+		dialogId: dialogs[0].id,
+	}));
+
+	React.useEffect(() => {
+		fetchMessages(setState, state.dialogId);
+	}, [
+		setState,
+		state.dialogId,
+	]);
+
+	return <Wrapper>
 		<ChatHeaderWrapper>
 			<Avatar single/>
 			<BriefTextBlock>
@@ -38,53 +55,23 @@ const DialogSection = () => (
 
 		<ContentWrapper>
 			<DialogScroll>
-			<ChatMessageBox myMessage>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi distinctio fugit, iusto
-				suscipit
-				veritatis? Accusantium debitis explicabo illum ipsa ipsum, necessitatibus nobis nulla officia
-				perspiciatis
-				provident quaerat repudiandae tenetur.
-				<Flex>
-					< Check/>
-					<span>9:02 pm</span>
-				</Flex>
-			</ChatMessageBox>
-			<ChatMessageBox>
-				Lorem ipsum dolor
-
-				<Flex>
-					< Check/>
-					<span>9:02 pm</span>
-				</Flex>
-			</ChatMessageBox>
-			<ChatMessageBox myMessage>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi distinctio fugit, iusto
-				suscipit
-				veritatis? Accusantium debitis explicabo illum ipsa ipsum, necessitatibus nobis nulla officia
-				perspiciatis
-				provident quaerat repudiandae tenetur.
-				<Flex>
-					< Check/>
-					<span>9:02 pm</span>
-				</Flex>
-			</ChatMessageBox>
-			<ChatMessageBox >
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi distinctio fugit, iusto
-				suscipit
-				veritatis? Accusantium debitis explicabo illum ipsa ipsum, necessitatibus nobis nulla officia
-				perspiciatis
-				provident quaerat repudiandae tenetur.
-				<Flex>
-					< Check/>
-					<span>9:02 pm</span>
-				</Flex>
-			</ChatMessageBox>
+			{state.data.map((item, i) => {
+				return <ChatMessageBox key={i} myMessage={!!item.me}>
+					{item.body}
+					<Flex>
+						<Check />
+						<span>{item.createdAt}</span>
+					</Flex>
+				</ChatMessageBox>;
+			})}
 			</DialogScroll>
 		</ContentWrapper>
-		<Footer>
+		<Footer 
+			dialogId={state.dialogId}
+			action={setState}>
 
 		</Footer>
 	</Wrapper>
-);
+};
 
 export default React.memo(DialogSection);

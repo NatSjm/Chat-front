@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Primary} from 'components/Block';
 import {FileUploadButton, MessageSendButton, EmojiButton} from 'components/Button';
 import {MessageTextArea} from 'components/TextArea';
+import onSubmitFunc from './onSubmit.js';
 
 
 const Wrapper = styled(Primary)`
@@ -33,16 +34,23 @@ const Wrapper = styled(Primary)`
     }
 `;
 
-const Footer = () => (
-    <Wrapper>
-        <FileUploadButton/>
-        <MessageTextArea
-            placeholder="Type your message..."
-            />
-        <EmojiButton/>
-        <MessageSendButton/>
-    </Wrapper>
+const Footer = ({ dialogId, action }) => {
+    const onSubmit = React.useCallback((...rest) => onSubmitFunc(...rest, dialogId, action), [
+        dialogId,
+        action,
+    ]);
 
-);
+    return <Wrapper>
+        <form onSubmit={onSubmit}>
+            <FileUploadButton/>
+            <MessageTextArea
+                name="body"
+                placeholder="Type your message..." />
+            <EmojiButton/>
+            <MessageSendButton type="submit" />
+        </form>
+    </Wrapper>;
+
+};
 
 export default React.memo(Footer);

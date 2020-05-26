@@ -1,33 +1,56 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import Block from 'components/Block';
 import ContentWrapper from './ContentWrapper';
 import Scroll from 'components/Scroll';
 import {DialogsListHeader} from 'components/ChatHeader';
 import {MenuButton} from 'components/Button';
 import {Search as SearchInput} from 'components/Input';
-import DialogListItem from "./DialogListItem";
+import DialogListItem from './DialogListItem';
+import { 
+	dialogs as fetchDialogs,
+} from 'fetches';
 
+export const Dialogs = React.createContext();
 const Wrapper = styled(Block)`
    border-right: 2px solid rgba(120, 109, 134, 0.2);
    background-color: ${({theme:{colors}}) => colors.secondaryPurple}; 
 `;
-const DialogsListSection = () => {
-	let contactItems = [];
-	for (let i = 0; i < 30; i++) {
-		contactItems.push(<DialogListItem key={i}/>);
-	}
-	return <Wrapper>
-		<DialogsListHeader>
-			<MenuButton/>
-			<SearchInput/>
-		</DialogsListHeader>
-		<ContentWrapper>
-			<Scroll>
-				{contactItems}
-			</Scroll>
-		</ContentWrapper>
-	</Wrapper>;
+const DialogsListSection = ({ children }) => {
+	const [ state, setState ] = React.useState(() => ({
+		data: [],
+	}));
+
+	// onMount
+	React.useEffect(() => {
+		fetchDialogs(setState);
+	}, [
+		setState,
+	]);
+
+	return <React.Fragment>
+		<Wrapper>
+			<DialogsListHeader>
+				<MenuButton/>
+				<SearchInput/>
+			</DialogsListHeader>
+			<ContentWrapper>
+				<Scroll>
+				{state.data.map(({ name, body = '' }, i) => {
+					return <DialogListItem 
+						key={i}
+						name={name}
+						body={body} />
+				})}
+				</Scroll>
+			</ContentWrapper>
+		</Wrapper>
+		{state.data.length > 0
+			? <Dialogs.Provider value={state.data}>
+				{children}
+			</Dialogs.Provider>
+			: <React.Fragment />}
+	</React.Fragment>;
 };
 
 export default React.memo(DialogsListSection);
