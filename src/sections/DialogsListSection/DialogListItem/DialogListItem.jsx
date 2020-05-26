@@ -18,16 +18,15 @@ flex-wrap: nowrap;
 margin-bottom: 10px;
 }
 `;
-const DialogListItem = () => (
+const DialogListItem = ({ name = '', body = '' }) => (
     <Wrapper>
         <Avatar showOnline/>
         <BriefTextBlock>
             <Headline3>
-                Michael Huddson
+                {name}
             </Headline3>
             <Paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. At magnam molestiae ratione soluta? At commodi
-                dolor doloribus ea earum excepturi fugiat hic, neque nisi nostrum, omnis optio, praesentium quasi quia?
+                {body}
             </Paragraph>
         </BriefTextBlock>
     </Wrapper>

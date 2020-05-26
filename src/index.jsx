@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'components/App/App.jsx';
+import App from 'components/App';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import * as theme from 'theme';
 

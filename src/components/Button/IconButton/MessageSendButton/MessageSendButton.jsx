@@ -23,8 +23,8 @@ const Wrapper = styled(IconButton)`
  `
 }}
 `;
-const MessageSendButton = () => (
-	<Wrapper>
+const MessageSendButton = ({ ...props }) => (
+	<Wrapper { ...props }>
 		<FontAwesomeIcon icon={faLocationArrow}/>
 	</Wrapper>
 );
