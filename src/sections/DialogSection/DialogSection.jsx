@@ -4,7 +4,7 @@ import Block from 'components/Block';
 import {Flex, BriefTextBlock} from 'components/Block';
 import ContentWrapper from './ContentWrapper';
 import ChatHeaderWrapper from 'components/ChatHeader';
-
+import Socket from 'components/Socket';
 import Footer from './Footer';
 import {Avatar} from 'components/Image';
 import {CameraButton} from 'components/Button';
@@ -14,7 +14,7 @@ import Check from 'components/Icon';
 import {DialogScroll} from 'components/Scroll';
 import { Dialogs as ContextDialogs } from 'sections/DialogsListSection/DialogsListSection.jsx';
 import { 
-	messages as fetchMessages,
+	messages as fetchMessagesFunc,
 } from 'fetches';
 
 const Wrapper = styled(Block)`
@@ -31,11 +31,17 @@ const DialogSection = () => {
 		data: [],
 		dialogId: dialogs[0].id,
 	}));
+	const fetchMessages = React.useCallback((...rest) => fetchMessagesFunc(...rest, setState), [
+		setState,
+	]);
 
 	React.useEffect(() => {
-		fetchMessages(setState, state.dialogId);
+		Socket().on('connect', () => {
+			Socket().emit('messages', { dialogId: state.dialogId });
+			Socket().on('messages', fetchMessages);
+		});
 	}, [
-		setState,
+		fetchMessages,
 		state.dialogId,
 	]);
 

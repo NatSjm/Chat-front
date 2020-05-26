@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Socket from 'components/Socket';
 
 const onSubmit = async (e, dialogId, action) => {
 	e.preventDefault();
@@ -8,6 +9,7 @@ const onSubmit = async (e, dialogId, action) => {
 		user_id: 2,
 		dialog_id: dialogId,
 		body: value,
+		id: Socket().id,
 	});
 
 	action((currentState) => {
