@@ -1,20 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
-import  Block, {Flex, BriefTextBlock, Mask} from 'components/Block';
+import React from "react";
+import styled from "styled-components";
+import Block from 'components/Block';
+import {Flex, BriefTextBlock} from 'components/Block';
 import ContentWrapper from './ContentWrapper';
 import ChatHeaderWrapper from 'components/ChatHeader';
+import Socket from 'components/Socket';
 import Footer from './Footer';
 import {Avatar} from 'components/Image';
-import {CameraButton, IconButton} from 'components/Button';
+import {CameraButton} from 'components/Button';
 import {Headline3, Paragraph} from 'components/Text';
 import ChatMessageBox from './ChatMessageBox';
 import Check from 'components/Icon';
 import {DialogScroll} from 'components/Scroll';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 import { Dialogs as ContextDialogs } from 'sections/DialogsListSection/DialogsListSection.jsx';
-import {
-	messages as fetchMessages,
+import { 
+	messages as fetchMessagesFunc,
 } from 'fetches';
 
 const Wrapper = styled(Block)`
@@ -31,11 +31,17 @@ const DialogSection = () => {
 		data: [],
 		dialogId: dialogs[0].id,
 	}));
+	const fetchMessages = React.useCallback((...rest) => fetchMessagesFunc(...rest, setState), [
+		setState,
+	]);
 
 	React.useEffect(() => {
-		fetchMessages(setState, state.dialogId);
+		Socket().on('connect', () => {
+			Socket().emit('messages', { dialogId: state.dialogId });
+			Socket().on('messages', fetchMessages);
+		});
 	}, [
-		setState,
+		fetchMessages,
 		state.dialogId,
 	]);
 
@@ -62,21 +68,14 @@ const DialogSection = () => {
 						<Check />
 						<span>{item.createdAt}</span>
 					</Flex>
-					<Mask>
-						<IconButton>
-							<FontAwesomeIcon icon={faPencilAlt}/>
-						</IconButton>
-						<IconButton>
-							<FontAwesomeIcon icon={faTrashAlt}/>
-						</IconButton>
-					</Mask>
 				</ChatMessageBox>;
 			})}
 			</DialogScroll>
 		</ContentWrapper>
-		<Footer
+		<Footer 
 			dialogId={state.dialogId}
 			action={setState}>
+
 		</Footer>
 	</Wrapper>
 };
