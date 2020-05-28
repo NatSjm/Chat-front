@@ -5,7 +5,7 @@ import {Avatar} from 'components/Image';
 import {Headline3, Text} from 'components/Text';
 import {CameraButton} from 'components/Button';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPencilAlt, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import {faPencilAlt, faTimes, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {IconButton} from 'components/Button';
 import styled from "styled-components";
 
@@ -33,9 +33,11 @@ const Header = () => {
 		</BriefTextBlock>
 		<CameraButton/>
 		{showOptions && (<OptionsCover>
-			{/*<IconButton onClick={() => setShowOptions(false)}>*/}
-			{/*	<FontAwesomeIcon icon={faTimes}/>*/}
-			{/*</IconButton>*/}
+			<IconButton onClick={(e) => {
+				e.stopPropagation();
+				setShowOptions(false)}}>
+				<FontAwesomeIcon icon={faTimes}/>
+			</IconButton>
 			<IconButton>
 				<FontAwesomeIcon icon={faPencilAlt}/>
 			</IconButton>

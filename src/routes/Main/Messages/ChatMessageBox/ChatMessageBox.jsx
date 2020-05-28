@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import Block, {Flex, OptionsCover} from 'components/Block';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPencilAlt, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {faPencilAlt, faTrashAlt, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {IconButton} from 'components/Button';
 import Check from 'components/Icon';
 import {timeFormatter} from '../helpers';
@@ -52,9 +52,11 @@ const ChatMessageBox = ({item}) => {
 			</Flex>
 
 			{showOptions && (<OptionsCover>
-				{/*<IconButton onClick={() => setShowOptions(false)}>*/}
-				{/*	<FontAwesomeIcon icon={faTimes}/>*/}
-				{/*</IconButton>*/}
+				<IconButton onClick={(e) => {
+					    e.stopPropagation();
+				        setShowOptions(false)}}>
+					<FontAwesomeIcon icon={faTimes}/>
+				</IconButton>
 				<IconButton>
 					<FontAwesomeIcon icon={faPencilAlt}/>
 				</IconButton>
