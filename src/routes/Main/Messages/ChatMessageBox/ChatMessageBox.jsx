@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPencilAlt, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {IconButton} from 'components/Button';
 import Check from 'components/Icon';
-import {timeFormatter as timeFunc} from '../helpers';
+import {timeFormatter} from '../helpers';
 import {Text} from 'components/Text'
 
 const Wrapper = styled(Block)`	
@@ -48,7 +48,7 @@ const ChatMessageBox = ({item}) => {
 			</Text>
 			<Flex>
 				<Check/>
-				<span>{timeFunc(item.createdAt)}</span>
+				<span>{timeFormatter(item.createdAt)}</span>
 			</Flex>
 
 			{showOptions && (<OptionsCover>

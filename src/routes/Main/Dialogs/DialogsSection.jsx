@@ -16,7 +16,7 @@ const Wrapper = styled(Block)`
    border-right: 2px solid rgba(120, 109, 134, 0.2);
    background-color: ${({theme:{colors}}) => colors.secondaryPurple}; 
 `;
-const DialogsListSection = ({ children }) => {
+const DialogsSection = ({ children }) => {
 	const [ state, setState ] = React.useState(() => ({
 		data: [],
 	}));
@@ -53,4 +53,4 @@ const DialogsListSection = ({ children }) => {
 	</React.Fragment>;
 };
 
-export default React.memo(DialogsListSection);
+export default React.memo(DialogsSection);
