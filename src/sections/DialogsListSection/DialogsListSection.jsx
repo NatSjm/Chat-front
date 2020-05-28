@@ -7,7 +7,7 @@ import {DialogsListHeader} from 'components/ChatHeader';
 import {MenuButton} from 'components/Button';
 import {Search as SearchInput} from 'components/Input';
 import DialogListItem from './DialogListItem';
-import { 
+import {
 	dialogs as fetchDialogs,
 } from 'fetches';
 
@@ -37,7 +37,7 @@ const DialogsListSection = ({ children }) => {
 			<ContentWrapper>
 				<Scroll>
 				{state.data.map(({ name, body = '' }, i) => {
-					return <DialogListItem 
+					return <DialogListItem
 						key={i}
 						name={name}
 						body={body} />

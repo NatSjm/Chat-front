@@ -1,9 +1,13 @@
 import React from "react";
 import styled from 'styled-components';
 import {Primary} from 'components/Block';
-import {FileUploadButton, MessageSendButton, EmojiButton} from 'components/Button';
+import {FileUploadButton, MessageSendButton, IconButton} from 'components/Button';
 import {MessageTextArea} from 'components/TextArea';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {far} from "@fortawesome/free-regular-svg-icons";
 import onSubmitFunc from './onSubmit.js';
+
+
 
 
 const Wrapper = styled(Primary)`
@@ -41,16 +45,19 @@ const Footer = ({ dialogId, action }) => {
         action,
     ]);
 
-    return <Wrapper>
-        <form onSubmit={onSubmit}>
+    return<form onSubmit={onSubmit}>
+            <Wrapper>
             <FileUploadButton/>
             <MessageTextArea
                 name="body"
                 placeholder="Type your message..." />
-            <EmojiButton/>
+             <IconButton>
+                <FontAwesomeIcon icon={far.faSmile} size='2x'/>
+             </IconButton>
             <MessageSendButton type="submit" />
-        </form>
-    </Wrapper>;
+            </Wrapper>
+        </form>;
+
 
 };
 

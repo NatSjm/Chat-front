@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import Block from 'components/Block';
+import Block, {Flex, OptionsCover} from 'components/Block';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPencilAlt, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {IconButton} from 'components/Button';
+import Check from 'components/Icon';
+import {timeFormatter as timeFunc} from '../helpers';
+import {Text} from 'components/Text'
 
 const Wrapper = styled(Block)`	
      box-sizing: border-box;
      border: 1px solid  ${({theme: {colors}}) => colors.lightPurple};
-	 overflow: visible;
+	 overflow: visible;	 
 	 margin-bottom: 60px;	
 	 max-width: 315px;
 	 border-radius: 6px;
@@ -17,26 +23,48 @@ const Wrapper = styled(Block)`
 }}
    	 & > div:first-of-type{
 	    display: flex;
+	    flex-wrap: nowrap;
 	    justify-content: space-between;
 	    align-items: baseline;
-	    width: 76px;
+	    width: 60px;	    
 	    overflow: hidden;
 		text-transform: uppercase;		
 		position: absolute;
         bottom: -30px;       
 		color: ${({theme: {colors}}) => colors.fontColor}; 
-		}} 	;
-	& > div:last-of-type{
-		width: 46px;
-		& button{
-    	margin: 5px;
-    	   }
-	}
+		}} ;
+	
 `;
-const ChatMessageBox = (props) => (
-	<Wrapper myMessage={props.myMessage}>
-		{props.children}
-	</Wrapper>
-);
-export default ChatMessageBox;
+
+const ChatMessageBox = ({item}) => {
+		const [showOptions, setShowOptions] = useState(false);
+		// console.log(showOptions);
+		return <Wrapper
+			myMessage={!!item.me}
+			// onClick={() => setShowOptions(!showOptions)}>
+			onClick={() => setShowOptions(true)}>
+			<Text>
+				{item.body}
+			</Text>
+			<Flex>
+				<Check/>
+				<span>{timeFunc(item.createdAt)}</span>
+			</Flex>
+
+			{showOptions && (<OptionsCover>
+				{/*<IconButton onClick={() => setShowOptions(false)}>*/}
+				{/*	<FontAwesomeIcon icon={faTimes}/>*/}
+				{/*</IconButton>*/}
+				<IconButton>
+					<FontAwesomeIcon icon={faPencilAlt}/>
+				</IconButton>
+				<IconButton>
+					<FontAwesomeIcon icon={faTrashAlt}/>
+				</IconButton>
+							</OptionsCover>)
+			}
+		</Wrapper>
+	}
+;
+export default React.memo(ChatMessageBox);
 

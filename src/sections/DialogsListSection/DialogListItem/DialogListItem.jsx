@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Primary} from 'components/Block';
 import {Avatar} from 'components/Image';
 import {BriefTextBlock} from 'components/Block';
-import {Paragraph, Headline3} from 'components/Text';
+import {Text, Headline3} from 'components/Text';
 
 
 const Wrapper = styled(Primary)`
@@ -25,9 +25,9 @@ const DialogListItem = ({ name = '', body = '' }) => (
             <Headline3>
                 {name}
             </Headline3>
-            <Paragraph>
+            <Text>
                 {body}
-            </Paragraph>
+            </Text>
         </BriefTextBlock>
     </Wrapper>
 );

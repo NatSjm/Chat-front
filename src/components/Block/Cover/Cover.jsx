@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 import Primary from '../Primary';
 
-const Mask = styled(Primary)`
-	position: absolute;
-	flex-direction: column;
-	justify-content: space-around;
+const Cover = styled(Primary)`
+	position: absolute;	
 	background-color: rgba(0, 0, 0, 0.3);
 	transition: all .1s linear;
 	width: 100%;
@@ -12,8 +10,8 @@ const Mask = styled(Primary)`
     top: 0;
     bottom: 0;
     z-index: 50;
-    padding: 10px;   
+   
    // display: none;
 `;
 
-export default Mask;
+export default Cover;

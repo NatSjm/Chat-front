@@ -1,7 +1,7 @@
 import Headline3 from './Headline3.jsx';
-import Paragraph from './Paragraph.jsx';
+import Text from './Paragraph.jsx';
 
 export {
     Headline3,
-    Paragraph
+    Text
 }

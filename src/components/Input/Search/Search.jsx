@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PrimaryInput from '../Primary.jsx';
 import {Primary as PrimaryWrapper} from 'components/Block';
-import {SearchButton} from 'components/Button';
+import {IconButton} from 'components/Button';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+
 
 
 const Wrapper = styled(PrimaryWrapper)`
@@ -31,7 +34,9 @@ ${({theme: {colors}}) => {
 `;
 const Search = () => (
 	<Wrapper>
-		<SearchButton/>
+		<IconButton>
+			<FontAwesomeIcon icon={faSearch}/>
+		</IconButton>
 		<PrimaryInput
 			type="search"
 			placeholder="Search"/>

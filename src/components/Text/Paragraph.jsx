@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Paragraph = styled.p`
-    
+const Text = styled.p`
+    word-wrap: break-word;
 `;
-export default Paragraph;
+export default Text;
