@@ -3,17 +3,15 @@ import styled from 'styled-components';
 import Block from 'components/Block';
 import ContentWrapper from './ContentWrapper';
 import Scroll from 'components/Scroll';
-import {DialogsListHeader} from 'components/ChatHeader';
-import {MenuButton} from 'components/Button';
-import {Search as SearchInput} from 'components/Input';
-import DialogListItem from './DialogListItem';
+import DialogsItem from './DialogsItem';
+import Header from './Header';
 import {
 	dialogs as fetchDialogs,
 } from 'fetches';
 
 export const Dialogs = React.createContext();
 const Wrapper = styled(Block)`
-   border-right: 2px solid rgba(120, 109, 134, 0.2);
+   border-right: 2px solid rgba(120, 109, 134, 0.2);   
    background-color: ${({theme:{colors}}) => colors.secondaryPurple}; 
 `;
 const DialogsSection = ({ children }) => {
@@ -30,14 +28,11 @@ const DialogsSection = ({ children }) => {
 
 	return <React.Fragment>
 		<Wrapper>
-			<DialogsListHeader>
-				<MenuButton/>
-				<SearchInput/>
-			</DialogsListHeader>
+			<Header/>
 			<ContentWrapper>
 				<Scroll>
 				{state.data.map(({ name, body = '' }, i) => {
-					return <DialogListItem
+					return <DialogsItem
 						key={i}
 						name={name}
 						body={body} />

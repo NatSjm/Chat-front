@@ -16,9 +16,10 @@ flex-wrap: nowrap;
 
 & h3{
 margin-bottom: 10px;
+cursor: pointer;
 }
 `;
-const DialogListItem = ({ name = '', body = '' }) => (
+const DialogsItem = ({ name = '', body = '' }) => (
     <Wrapper>
         <Avatar showOnline/>
         <BriefTextBlock>
@@ -32,4 +33,4 @@ const DialogListItem = ({ name = '', body = '' }) => (
     </Wrapper>
 );
 
-export default React.memo(DialogListItem);
+export default React.memo(DialogsItem);
