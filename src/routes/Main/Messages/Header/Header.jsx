@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import {BriefTextBlock, OptionsCover} from 'components/Block';
 import ChatHeaderWrapper from 'components/ChatHeader';
 import {Avatar} from 'components/Image';
 import {Headline3, Text} from 'components/Text';
 import {CameraButton} from 'components/Button';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPencilAlt, faTimes, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faPencilAlt, faTimes, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {IconButton} from 'components/Button';
 import styled from "styled-components";
 
@@ -18,13 +18,50 @@ position: relative;
     
 `;
 const Header = () => {
+	const dialogName = 'Dialog Name';
 	const [showOptions, setShowOptions] = useState(false);
+	const [modeEdit, setModeEdit] = useState(false);
+	const [textValue, setTextValue] = useState(dialogName);
+	const messageEditing = useRef(null);
+	const messageEdit = (e) => {
+		e.stopPropagation();
+		setModeEdit(true);
+		messageEditing.current.focus();
+	};
+	// useEffect(() => {
+	// 	console.log(textValue);
+	// }, [textValue]);
+
+	const updateMessage = (e) => {
+		e.stopPropagation();
+		setTextValue(messageEditing.current.innerText);
+		setModeEdit(false);
+		setShowOptions(false);
+	};
+
+	const closeOptions = (e) => {
+		e.stopPropagation();
+		setShowOptions(false);
+	};
+
+	const cancelEdit = async (e) => {
+		e.stopPropagation();
+		await (setTextValue(messageEditing.current.innerText));
+		setTextValue(dialogName);
+		setModeEdit(false);
+		setShowOptions(false);
+	};
 	return <Wrapper
-			onClick={() => setShowOptions(true)}>
+		onClick={() => setShowOptions(true)}>
 		<Avatar single/>
 		<BriefTextBlock>
-			<Headline3>
-				Michael Huddson
+			<Headline3
+				contentEditable={modeEdit}
+				suppressContentEditableWarning
+				tabIndex="1"
+				ref={messageEditing}
+			>
+				{textValue}
 			</Headline3>
 			<Text>
 				online
@@ -33,19 +70,29 @@ const Header = () => {
 		</BriefTextBlock>
 		<CameraButton/>
 		{showOptions && (<OptionsCover>
-			<IconButton onClick={(e) => {
-				e.stopPropagation();
-				setShowOptions(false)}}>
+			<IconButton onClick={modeEdit
+				? cancelEdit
+				: closeOptions}>
 				<FontAwesomeIcon icon={faTimes}/>
 			</IconButton>
-			<IconButton>
-				<FontAwesomeIcon icon={faPencilAlt}/>
-			</IconButton>
-			<IconButton>
-				<FontAwesomeIcon icon={faTrashAlt}/>
-			</IconButton>
+			{modeEdit
+				? <IconButton>
+					<FontAwesomeIcon icon={faCheck}
+									 onClick={updateMessage}/>
+				</IconButton>
+				: <React.Fragment>
+					<IconButton>
+						<FontAwesomeIcon icon={faPencilAlt}
+										 onClick={messageEdit}/>
+					</IconButton>
+					<IconButton>
+						<FontAwesomeIcon icon={faTrashAlt}/>
+					</IconButton>
+				</React.Fragment>
+			}
 		</OptionsCover>)
 		}
+
 	</Wrapper>
 };
 

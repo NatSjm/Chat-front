@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import styled from 'styled-components';
 import Block, {Flex, OptionsCover} from 'components/Block';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPencilAlt, faTrashAlt, faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faPencilAlt, faTrashAlt, faTimes, faCheck} from '@fortawesome/free-solid-svg-icons';
 import {IconButton} from 'components/Button';
 import Check from 'components/Icon';
 import {timeFormatter} from '../helpers';
@@ -38,13 +38,46 @@ const Wrapper = styled(Block)`
 
 const ChatMessageBox = ({item}) => {
 		const [showOptions, setShowOptions] = useState(false);
-		// console.log(showOptions);
+		const [modeEdit, setModeEdit] = useState(false);
+		const [textValue, setTextValue] = useState(item.body);
+		const messageEditing = useRef(null);
+		const messageEdit = (e) => {
+			e.stopPropagation();
+			setModeEdit(true);
+			messageEditing.current.focus();
+		};
+		// useEffect(() => {
+		// 	console.log(textValue);
+		// }, [textValue]);
+
+		const updateMessage = (e) => {
+			e.stopPropagation();
+			setTextValue(messageEditing.current.innerText);
+			setModeEdit(false);
+			setShowOptions(false);
+		};
+
+		const closeOptions = (e) => {
+			e.stopPropagation();
+			setShowOptions(false);
+		};
+
+		const cancelEdit = async (e) => {
+			e.stopPropagation();
+			await (setTextValue(messageEditing.current.innerText));
+			setTextValue(item.body);
+			setModeEdit(false);
+			setShowOptions(false);
+		};
+
 		return <Wrapper
 			myMessage={!!item.me}
-			// onClick={() => setShowOptions(!showOptions)}>
 			onClick={() => setShowOptions(true)}>
-			<Text>
-				{item.body}
+			<Text contentEditable={modeEdit}
+				  suppressContentEditableWarning
+				  tabIndex="1"
+				  ref={messageEditing}>
+				{textValue}
 			</Text>
 			<Flex>
 				<Check/>
@@ -52,18 +85,27 @@ const ChatMessageBox = ({item}) => {
 			</Flex>
 
 			{showOptions && (<OptionsCover>
-				<IconButton onClick={(e) => {
-					    e.stopPropagation();
-				        setShowOptions(false)}}>
+				<IconButton onClick={modeEdit
+					? cancelEdit
+					: closeOptions}>
 					<FontAwesomeIcon icon={faTimes}/>
 				</IconButton>
-				<IconButton>
-					<FontAwesomeIcon icon={faPencilAlt}/>
-				</IconButton>
-				<IconButton>
-					<FontAwesomeIcon icon={faTrashAlt}/>
-				</IconButton>
-							</OptionsCover>)
+				{modeEdit
+					? <IconButton>
+						<FontAwesomeIcon icon={faCheck}
+										 onClick={updateMessage}/>
+					</IconButton>
+					: <React.Fragment>
+						<IconButton>
+							<FontAwesomeIcon icon={faPencilAlt}
+											 onClick={messageEdit}/>
+						</IconButton>
+						<IconButton>
+							<FontAwesomeIcon icon={faTrashAlt}/>
+						</IconButton>
+					</React.Fragment>
+				}
+			</OptionsCover>)
 			}
 		</Wrapper>
 	}
