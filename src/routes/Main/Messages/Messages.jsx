@@ -48,7 +48,7 @@ const Messages = () => {
 
 
 	return <Wrapper>
-        <Header/>
+        <Header dialog={dialogs[0]}/>
 		<ContentWrapper>
 			<DialogScroll>
 				{state.data.map((item, i) => {

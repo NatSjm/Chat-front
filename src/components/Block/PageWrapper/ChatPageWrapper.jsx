@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PageWrapper from '../PageWrapper.jsx';
+import PageWrapper from './PageWrapper.jsx';
 
 const ChatPageWrapper = styled(PageWrapper)`
 	& > div:first-child{

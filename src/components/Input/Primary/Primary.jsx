@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Input from './Input.jsx';
+import Input from '../Input.jsx';
 
 const Primary = styled(Input)`
       background-color: inherit;

@@ -1,18 +1,26 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import Cover  from './Cover.jsx';
 
+const grow = keyframes`
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 36px;
+  }
+`;
 
 
 const OptionsCover = styled(Cover)`
     flex-wrap: nowrap;
     flex-direction: column;
 	justify-content: space-around;	
-	transition: all 0.2s linear ;
-	 
-	width: 46px;
-	padding: 10px;
+	animation: ${grow} 0.2s linear;			
+	width: 36px;
+		
 		& button{
-    	margin: 10px;   	
+    	margin: 8px;	   	
        }
 `;
 

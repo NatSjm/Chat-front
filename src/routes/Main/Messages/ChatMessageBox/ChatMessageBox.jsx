@@ -1,12 +1,15 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styled from 'styled-components';
-import Block, {Flex, OptionsCover} from 'components/Block';
+import Block from 'components/Block';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPencilAlt, faTrashAlt, faTimes, faCheck} from '@fortawesome/free-solid-svg-icons';
 import {IconButton} from 'components/Button';
 import Check from 'components/Icon';
 import {timeFormatter} from '../helpers';
-import {Text} from 'components/Text'
+import {Text} from 'components/Text';
+import Time from './Time.jsx';
+import Options from './Options.jsx';
+
 
 const Wrapper = styled(Block)`	
      box-sizing: border-box;
@@ -19,40 +22,32 @@ const Wrapper = styled(Block)`
 	 position: relative;
 	 
 	${({theme: {messageBox}, myMessage}) => {
-	return myMessage ? messageBox.myMessageBox : messageBox.responseMessageBox;
+	return myMessage ? messageBox.myMessageBox.messageBox : messageBox.responseMessageBox.messageBox;
 }}
-   	 & > div:first-of-type{
-	    display: flex;
-	    flex-wrap: nowrap;
-	    justify-content: space-between;
-	    align-items: baseline;
-	    width: 60px;	    
-	    overflow: hidden;
-		text-transform: uppercase;		
-		position: absolute;
-        bottom: -30px;       
-		color: ${({theme: {colors}}) => colors.fontColor}; 
-		}} ;
-	
 `;
 
 const ChatMessageBox = ({item}) => {
 		const [showOptions, setShowOptions] = useState(false);
 		const [modeEdit, setModeEdit] = useState(false);
 		const [textValue, setTextValue] = useState(item.body);
+		const [updatedValue, setUpdatedValue] = useState(item.body);
 		const messageEditing = useRef(null);
+
+		useEffect(() => {
+			if (updatedValue !== item.body) {
+				//console.log('update function  ' + updatedValue);
+			}
+		}, [updatedValue, item.body]);
+
 		const messageEdit = (e) => {
 			e.stopPropagation();
 			setModeEdit(true);
 			messageEditing.current.focus();
 		};
-		// useEffect(() => {
-		// 	console.log(textValue);
-		// }, [textValue]);
-
 		const updateMessage = (e) => {
 			e.stopPropagation();
 			setTextValue(messageEditing.current.innerText);
+			setUpdatedValue(messageEditing.current.innerText);
 			setModeEdit(false);
 			setShowOptions(false);
 		};
@@ -79,12 +74,12 @@ const ChatMessageBox = ({item}) => {
 				  ref={messageEditing}>
 				{textValue}
 			</Text>
-			<Flex>
+			<Time myMessage={!!item.me}>
 				<Check/>
 				<span>{timeFormatter(item.createdAt)}</span>
-			</Flex>
+			</Time>
 
-			{showOptions && (<OptionsCover>
+			{showOptions && (<Options myMessage={!!item.me}>
 				<IconButton onClick={modeEdit
 					? cancelEdit
 					: closeOptions}>
@@ -105,7 +100,7 @@ const ChatMessageBox = ({item}) => {
 						</IconButton>
 					</React.Fragment>
 				}
-			</OptionsCover>)
+			</Options>)
 			}
 		</Wrapper>
 	}

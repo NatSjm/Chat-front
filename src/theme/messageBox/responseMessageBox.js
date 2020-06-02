@@ -1,8 +1,9 @@
 import * as colors from './../colors.js'
- const responseMessageBox = `
+
+export const messageBox = `
 background-color: ${colors.lightPurple};
 align-self: flex-start;
-padding-right: 50px;
+padding-right: 44px;
 &::after{
 	position: absolute;
 	content: '';
@@ -15,15 +16,15 @@ padding-right: 50px;
 	top: 25px;
 	border-right-color: ${colors.lightPurple};
 }
+ `;
 
-& > div:first-of-type{
+export const time = `
     flex-direction: row;
     left: 0;
-};
-
-& > div:last-of-type{
- 	right: 0;
- 	border-radius: 0 6px 6px 0;
- 	};
 `;
-export default responseMessageBox;
+
+export const options = `
+	right: 0;
+ 	border-radius: 0 6px 6px 0;
+`;
+

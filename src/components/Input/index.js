@@ -1,5 +1,5 @@
 import Input from './Input.jsx';
-import Primary from './Primary.jsx';
+import Primary from './Primary';
 import Search from './Search';
 
 export default Input;

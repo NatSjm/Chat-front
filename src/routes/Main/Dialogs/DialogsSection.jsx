@@ -14,6 +14,7 @@ const Wrapper = styled(Block)`
    border-right: 2px solid rgba(120, 109, 134, 0.2);   
    background-color: ${({theme:{colors}}) => colors.secondaryPurple}; 
 `;
+
 const DialogsSection = ({ children }) => {
 	const [ state, setState ] = React.useState(() => ({
 		data: [],

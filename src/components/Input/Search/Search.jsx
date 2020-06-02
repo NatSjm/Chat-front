@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PrimaryInput from '../Primary.jsx';
+import PrimaryInput from '../Primary';
 import {Primary as PrimaryWrapper} from 'components/Block';
 import {IconButton} from 'components/Button';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons';
 const Wrapper = styled(PrimaryWrapper)`
 flex-grow:       1;
 justify-content: flex-start;
+flex-wrap: nowrap;
 margin-left:     20px;
 padding-left:    30px;
 padding-right:   30px;

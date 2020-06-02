@@ -1,5 +1,5 @@
-import myMessageBox from './myMessageBox'
-import responseMessageBox from './responseMessageBox.jsx';
+import * as myMessageBox from './myMessageBox.js'
+import * as responseMessageBox from './responseMessageBox.js';
 
 export
 {

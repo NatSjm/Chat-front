@@ -1,8 +1,8 @@
 import * as colors from './../colors.js'
-const myMessageBox = `
-background-color: ${colors.transparentLightPurple};
-padding-left: 50px;
 
+export const messageBox = `
+background-color: ${colors.transparentLightPurple};
+padding-left: 44px;
 align-self: flex-end;
 &::after,
 &::before{
@@ -17,21 +17,19 @@ align-self: flex-end;
 	margin-right: -9px;	
 	top: 25px;
 	border-left-color: ${colors.transparentLightPurple};
-
 }
 &::before{
  	margin-right: -10px;
 	border-left-color: ${colors.lightPurple};
 }
-
-& > div:first-of-type{
-    flex-direction: row-reverse;
-    right: 0;
-};
-
-& > div:last-of-type{
- 	left: 0;
- 	border-radius: 6px 0 0 6px;
-};
 `;
-export default myMessageBox;
+
+export const time = `
+	flex-direction: row-reverse;
+ 	right: 0;
+`;
+
+export const options = `
+	left: 0;
+ 	border-radius: 6px 0 0 6px;
+`;
