@@ -1,13 +1,13 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, {useState, useRef, useEffect} from 'react';
 import {BriefTextBlock, OptionsCover} from 'components/Block';
 import ChatHeaderWrapper from 'components/ChatHeader';
 import {Avatar} from 'components/Image';
 import {Headline3, Text} from 'components/Text';
 import {CameraButton} from 'components/Button';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck, faPencilAlt, faTimes, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheck, faPencilAlt, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {IconButton} from 'components/Button';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Wrapper = styled(ChatHeaderWrapper)`	
 position: relative;
@@ -56,6 +56,16 @@ const Header = ({dialog}) => {
 		setShowOptions(false);
 	};
 
+	const onKeyDown = (e) => {
+		if ((e.key === 'Enter') && modeEdit) {
+			updateMessage(e);
+		}
+		if ((e.key === 'Escape') && modeEdit) {
+			cancelEdit(e);
+		}
+	};
+
+
 	return <Wrapper>
 		<Avatar single/>
 		<BriefTextBlock onClick={() => setShowOptions(true)}>
@@ -63,7 +73,8 @@ const Header = ({dialog}) => {
 				contentEditable={modeEdit}
 				suppressContentEditableWarning
 				tabIndex="1"
-				ref={messageEditing}>
+				ref={messageEditing}
+				onKeyDown={onKeyDown}>
 				{textValue}
 			</Headline3>
 			<Text>

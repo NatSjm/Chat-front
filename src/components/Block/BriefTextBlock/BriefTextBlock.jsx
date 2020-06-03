@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {Primary} from 'components/Block';
 
 const BriefTextBlock = styled(Primary)`

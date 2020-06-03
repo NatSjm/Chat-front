@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import {Primary} from 'components/Block';
 import {Avatar} from 'components/Image';
 import {BriefTextBlock} from 'components/Block';

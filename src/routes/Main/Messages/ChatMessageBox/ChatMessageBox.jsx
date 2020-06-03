@@ -44,6 +44,7 @@ const ChatMessageBox = ({item}) => {
 			setModeEdit(true);
 			messageEditing.current.focus();
 		};
+
 		const updateMessage = (e) => {
 			e.stopPropagation();
 			setTextValue(messageEditing.current.innerText);
@@ -65,13 +66,23 @@ const ChatMessageBox = ({item}) => {
 			setShowOptions(false);
 		};
 
+		const onKeyDown = (e) => {
+			if((e.key === 'Enter') && modeEdit){
+				updateMessage(e);
+			}
+			if((e.key === 'Escape') && modeEdit){
+				cancelEdit(e);
+			}
+		};
+
 		return <Wrapper
 			myMessage={!!item.me}
 			onClick={() => setShowOptions(true)}>
 			<Text contentEditable={modeEdit}
 				  suppressContentEditableWarning
 				  tabIndex="1"
-				  ref={messageEditing}>
+				  ref={messageEditing}
+				  onKeyDown={onKeyDown}>
 				{textValue}
 			</Text>
 			<Time myMessage={!!item.me}>

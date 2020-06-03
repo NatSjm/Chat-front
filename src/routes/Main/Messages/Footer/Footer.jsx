@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
 import {Primary as PrimaryForm} from 'components/Form';
 import {FileUploadButton, MessageSendButton, IconButton} from 'components/Button';
 import {MessageTextArea} from 'components/TextArea';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {far} from "@fortawesome/free-regular-svg-icons";
+import {far} from '@fortawesome/free-regular-svg-icons';
 import onSubmitFunc from './onSubmit.js';
 
 

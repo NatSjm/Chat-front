@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Scroll from '../Scroll';
+
 const DialogScroll = styled(Scroll)`
 padding-right: 20px;
 padding-left: 20px;

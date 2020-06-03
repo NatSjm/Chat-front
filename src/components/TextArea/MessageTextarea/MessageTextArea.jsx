@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TextArea from "../TextArea";
+import TextArea from '../TextArea';
 
 const MessageTextArea = styled(TextArea)`
 	  resize: none;

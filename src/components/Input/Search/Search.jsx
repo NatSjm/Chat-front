@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PrimaryInput from '../Primary';
 import {Primary as PrimaryWrapper} from 'components/Block';
 import {IconButton} from 'components/Button';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 
 
