@@ -1,4 +1,5 @@
 import Button from './Button.jsx';
+import Save from './Save';
 import IconButton from './IconButton';
 import { MenuButton, FileUploadButton, MessageSendButton, CameraButton} from './IconButton';
 
@@ -10,4 +11,5 @@ export {
     FileUploadButton,
     MessageSendButton,
     CameraButton,
+    Save
 };

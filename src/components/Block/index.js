@@ -5,6 +5,7 @@ import Primary from './Primary';
 import BriefTextBlock from './BriefTextBlock';
 import PageWrapper, {ChatPageWrapper} from './PageWrapper';
 import Cover, {OptionsCover} from './Cover';
+import Secondary from './Secondary';
 
 
 export default Block;
@@ -16,5 +17,6 @@ export {
 	PageWrapper,
 	ChatPageWrapper,
 	Cover,
-	OptionsCover
+	OptionsCover,
+	Secondary
 };

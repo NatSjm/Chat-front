@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react';
 import styled from 'styled-components';
 import Block from 'components/Block';
 import ContentWrapper from './ContentWrapper';
@@ -21,8 +21,9 @@ const Wrapper = styled(Block)`
         `;
 }}
     `;
+
 const Messages = () => {
-	const dialogs = React.useContext(ContextDialogs);
+	const dialogs = useContext(ContextDialogs);
 	const [state, setState] = React.useState(() => ({
 		data: [],
 		dialogId: dialogs[0].id,
