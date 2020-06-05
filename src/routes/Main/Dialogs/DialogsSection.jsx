@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Block from 'components/Block';
 import ContentWrapper from './ContentWrapper';
@@ -15,15 +16,16 @@ const Wrapper = styled(Block)`
    background-color: ${({theme:{colors}}) => colors.secondaryPurple}; 
 `;
 
-const DialogsSection = ({ children }) => {
+const DialogsSection = ({ history, children }) => {
 	const [ state, setState ] = React.useState(() => ({
 		data: [],
 	}));
 
 	// onMount
 	React.useEffect(() => {
-		fetchDialogs(setState);
+		fetchDialogs(history, setState);
 	}, [
+		history,
 		setState,
 	]);
 
@@ -49,4 +51,4 @@ const DialogsSection = ({ children }) => {
 	</React.Fragment>;
 };
 
-export default React.memo(DialogsSection);
+export default React.memo(withRouter(DialogsSection));

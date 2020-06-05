@@ -1,9 +1,11 @@
 import axios from 'axios';
+import login from './login.js';
 
-const refreshTokens = () => {};
-const dialogs = async (action = () => {}) => {
+const dialogs = async (history, action = () => {}) => {
 	try {
-		const response = await axios.get(`http://127.0.0.1:4444/dialogs`);
+		const response = await axios.get(`http://127.0.0.1:4444/dialogs`, {
+			withCredentials: true,
+		});
 
 		action((state) => {
 			return {
@@ -13,7 +15,10 @@ const dialogs = async (action = () => {}) => {
 		});
 	}
 	catch (err) {
-		err.response.status === 401 && refreshTokens(err);
+		if (err.response.status === 401) {
+			await login(history);
+			await dialogs(history, action);
+		}
 	}
 };
 
