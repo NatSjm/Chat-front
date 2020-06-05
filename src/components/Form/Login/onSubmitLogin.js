@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const onSubmit = async (e, history) => {
+const onSubmitLogin = async (e, history) => {
 	e.preventDefault();
 
 	const { email, password } = e.currentTarget.elements;
-	
+
 	if (email && password) {
 		try {
 			const emailValue = email.value;
@@ -23,4 +23,4 @@ const onSubmit = async (e, history) => {
 	}
 };
 
-export default onSubmit;
+export default onSubmitLogin;

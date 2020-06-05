@@ -5,6 +5,7 @@ import Avatar from './Avatar';
 import Secondary from './Secondary';
 import Email from './Email';
 import Password from './PassWord';
+import Name from './Name';
 
 export default Input;
 export {
@@ -13,5 +14,6 @@ export {
     Avatar,
     Secondary,
     Password,
-    Email
+    Email,
+    Name
 };

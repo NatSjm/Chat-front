@@ -5,7 +5,7 @@ import { Login as FormLogin } from 'components/Form';
 const Register = () => {
 	return <>
 		<BlockSecondary>
-			<FormLogin confirmPassword />
+			<FormLogin register />
 		</BlockSecondary>
 	</>
 };

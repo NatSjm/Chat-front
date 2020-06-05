@@ -19,7 +19,7 @@ const Wrapper = styled(Button)`
 				: 'primaryDesktop';
 
 		return `
-			width: ${theme.buttons[type].width};
+			width: 350px;
 			font-size: ${theme.buttons[type].fontSize};
 			line-height: ${theme.buttons[type].lineHeight};
 			color: ${theme.colors.white};
