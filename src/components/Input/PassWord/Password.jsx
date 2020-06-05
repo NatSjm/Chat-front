@@ -1,10 +1,13 @@
 import React from 'react';
 import Secondary from '../Secondary';
 
-class Password extends React.Component {
-	render = () => {
-		return <Secondary type="password" placeholder="Введите пароль" />
-	};
-}
+let Password = (props) => {
+	return <Secondary { ...props } type="password" />;
+};
+
+Password = React.memo(Password);
+Password.defaultProps = {
+	placeholder: 'Введите пароль',
+};
 
 export default Password;

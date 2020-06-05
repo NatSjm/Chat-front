@@ -1,7 +1,9 @@
-import Account from './Account';
+import Login from './Login';
 import Main from './Main';
+import Register from './Register';
 
 export {
-   Account,
-    Main,
+   Login,
+   Main,
+   Register,
 };

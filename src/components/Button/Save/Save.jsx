@@ -44,20 +44,15 @@ const Wrapper = styled(Button)`
 	}
 `;
 
-class Save extends React.PureComponent {
-	static defaultProps = {
-		children: 'Сохранить',
-	};
+let Save = ({ children, ...props }) => {
+	return <Wrapper { ...props }>
+		{children}
+	</Wrapper>;
+};
 
-	render = () => {
-		const { mobile, tablet } = this.props;
-
-		return <Wrapper
-			mobile={mobile}
-			tablet={tablet}>
-			{this.props.children}
-		</Wrapper>;
-	};
+Save = React.memo(Save);
+Save.defaultProps = {
+	children: 'Сохранить',
 };
 
 export default Save;

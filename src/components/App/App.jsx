@@ -3,15 +3,16 @@ import {
 	BrowserRouter,
 	Switch,
 	Route,
+	Redirect,
 //	Link,
 } from 'react-router-dom';
 import {
 	Main,
-	Account
+	Login,
+	Register,
 } from 'routes';
-
 import {useResolution} from 'components/Hooks';
-
+import isLogin from 'utils/isLogin.js';
 
 export const ResolutionContext = React.createContext();
 const App = () => {
@@ -21,11 +22,18 @@ const App = () => {
 	<ResolutionContext.Provider value = {resolution}>
 		<BrowserRouter>
 			<Switch>
-				<Route exact path="/">
-					<Main/>
+				<Route 
+					exact 
+					path="/"
+					render={() => isLogin()
+						? <Main />
+						: <Redirect to="login" />}>
 				</Route>
-				<Route exact path="/account">
-					<Account/>
+				<Route exact path="/login">
+					<Login/>
+				</Route>
+				<Route exact path="/register">
+					<Register/>
 				</Route>
 			</Switch>
 		</BrowserRouter>

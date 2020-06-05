@@ -1,10 +1,13 @@
 import React from 'react';
 import Secondary from '../Secondary';
 
-class Email extends React.Component {
-	render = () => {
-		return <Secondary type="email" placeholder="Введите email" />
-	};
-}
+let Email = (props) => {
+	return <Secondary { ...props } type="email" />;
+};
+
+Email = React.memo(Email);
+Email.defaultProps = {
+	placeholder: 'Введите email',
+};
 
 export default Email;
