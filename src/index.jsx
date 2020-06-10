@@ -5,8 +5,6 @@ import {ThemeProvider} from 'styled-components';
 import * as theme from 'theme';
 import GlobalStyle from 'components/GlobalStyle';
 
-
-
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         <GlobalStyle />
