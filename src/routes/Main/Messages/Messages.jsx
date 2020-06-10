@@ -39,7 +39,7 @@ const Messages = () => {
 
 	React.useEffect(() => {
 		Socket().on('connect', () => {
-			Socket().emit('messages', {dialogId: state.dialogId});
+			Socket().emit('messages', { dialogId: state.dialogId });
 			Socket().on('messages', fetchMessages);
 		});
 	}, [
