@@ -7,13 +7,11 @@ import {CameraButton} from 'components/Button';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck, faPencilAlt, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {IconButton} from 'components/Button';
+import { Upload as FormUpload } from 'components/Form';
 import styled from 'styled-components';
 
 const Wrapper = styled(ChatHeaderWrapper)`	
 position: relative;
-& div:last-child{
-  right: 108px; 
-}
     
 `;
 const Header = ({dialog}) => {
@@ -67,7 +65,13 @@ const Header = ({dialog}) => {
 
 
 	return <Wrapper>
-		<Avatar single/>
+		<FormUpload 
+			autoSubmit
+			action="http://127.0.0.1:4444/upload"
+			width="84px" 
+			height="84px">
+			<Avatar single/>
+		</FormUpload>
 		<BriefTextBlock onClick={() => setShowOptions(true)}>
 			<Headline3
 				contentEditable={modeEdit}

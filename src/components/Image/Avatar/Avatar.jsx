@@ -6,21 +6,21 @@ import {CheckCircle} from 'components/Icon';
 import avatarDefault from 'img/avatarDefault.jpg'
 
 const Wrapper = styled(Block)`
-flex-shrink: 0;
-z-index: 3;
-width: 84px;
-height: 84px;
-border-radius: 50%;
-position: relative;
-overflow: visible;
-border: 4px solid  ${({theme: {colors}, single}) => single ? colors.borderGrey : colors.lightPurple}};
+	flex-shrink: 0;
+	z-index: 3;
+	width: 84px;
+	height: 84px;
+	border-radius: 50%;
+	position: relative;
+	overflow: visible;
+	border: 4px solid  ${({theme: {colors}, single}) => single ? colors.borderGrey : colors.lightPurple}};
 
-& img{
-z-index:5;
-width: 100%;
-height: 100%;
-border-radius: 50%; 
-}
+	& img{
+	z-index:5;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%; 
+	}
 `;
 const Avatar = (props) => (
     <Wrapper {...props}>
