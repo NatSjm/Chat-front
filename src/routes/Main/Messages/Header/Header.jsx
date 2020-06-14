@@ -16,7 +16,7 @@ position: relative;
 }
     
 `;
-const Header = ({dialog}) => {
+const Header = ({dialog, modeCreate}) => {
 	const [showOptions, setShowOptions] = useState(false);
 	const [modeEdit, setModeEdit] = useState(false);
 	const [textValue, setTextValue] = useState(dialog.name);
@@ -67,45 +67,53 @@ const Header = ({dialog}) => {
 
 
 	return <Wrapper>
-		<Avatar single/>
-		<BriefTextBlock onClick={() => setShowOptions(true)}>
-			<Headline3
-				contentEditable={modeEdit}
-				suppressContentEditableWarning
-				tabIndex="1"
-				ref={messageEditing}
-				onKeyDown={onKeyDown}>
-				{textValue}
-			</Headline3>
-			<Text>
-				online
-			</Text>
-		</BriefTextBlock>
-		<CameraButton/>
-		{showOptions && (<OptionsCover>
-			<IconButton onClick={modeEdit
-				? cancelEdit
-				: closeOptions}>
-				<FontAwesomeIcon icon={faTimes}/>
-			</IconButton>
-			{modeEdit
-				? <IconButton>
-					<FontAwesomeIcon icon={faCheck}
-									 onClick={updateMessage}/>
-				</IconButton>
-				: <React.Fragment>
-					<IconButton>
-						<FontAwesomeIcon icon={faPencilAlt}
-										 onClick={messageEdit}/>
+		{!modeCreate
+			? <React.Fragment>
+				<Avatar single/>
+				<BriefTextBlock onClick={() => setShowOptions(true)}>
+					<Headline3
+						contentEditable={modeEdit}
+						suppressContentEditableWarning
+						tabIndex="1"
+						ref={messageEditing}
+						onKeyDown={onKeyDown}>
+						{textValue}
+					</Headline3>
+					<Text>
+						online
+					</Text>
+				</BriefTextBlock>
+				<CameraButton/>
+				{showOptions && (<OptionsCover>
+					<IconButton onClick={modeEdit
+						? cancelEdit
+						: closeOptions}>
+						<FontAwesomeIcon icon={faTimes}/>
 					</IconButton>
-					<IconButton>
-						<FontAwesomeIcon icon={faTrashAlt}/>
-					</IconButton>
-				</React.Fragment>
-			}
-		</OptionsCover>)
+					{modeEdit
+						? <IconButton>
+							<FontAwesomeIcon icon={faCheck}
+											 onClick={updateMessage}/>
+						</IconButton>
+						: <React.Fragment>
+							<IconButton>
+								<FontAwesomeIcon icon={faPencilAlt}
+												 onClick={messageEdit}/>
+							</IconButton>
+							<IconButton>
+								<FontAwesomeIcon icon={faTrashAlt}/>
+							</IconButton>
+						</React.Fragment>
+					}
+				</OptionsCover>)
+				}
+			</React.Fragment>
+			: <React.Fragment>
+				<Headline3>
+					Создание чата
+				</Headline3>
+			</React.Fragment>
 		}
-
 	</Wrapper>
 };
 

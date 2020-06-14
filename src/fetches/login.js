@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const login = async (history, email, password) => {
+const login = async (history = null, email, password) => {
 	try {
 		const splitTokens = document.cookie.split(';');
 		let queryString = '';
@@ -21,7 +21,9 @@ const login = async (history, email, password) => {
 		document.cookie = `accessToken=${accessToken}`;
 		document.cookie = `refreshToken=${refreshToken}`;
 
-		history.push('/');
+		if (history) {
+			history.push('/');
+		}
 	}
 	catch (err) {
 		console.log('err', err);

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import Input from '../Input.jsx';
 
-const Primary = styled(Input)`
-      background-color: inherit;
+const Primary = styled(Input)`     
       border:           none;
-      
+      background-color: inherit;
       color:            white;
       flex-grow: 1;
        &::-webkit-input-placeholder {

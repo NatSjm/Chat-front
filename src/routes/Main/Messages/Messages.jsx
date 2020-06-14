@@ -26,7 +26,7 @@ const Messages = () => {
 	const dialogs = useContext(ContextDialogs);
 	const [state, setState] = React.useState(() => ({
 		data: [],
-		dialogId: dialogs[0].id,
+		dialogId: dialogs.data[0].id,
 	}));
 	const fetchMessages = React.useCallback((...rest) => fetchMessagesFunc(...rest, setState), [
 		setState,
@@ -34,12 +34,14 @@ const Messages = () => {
 	const messagesEndRef = useRef(null);
 
 	useEffect(() => {
-		messagesEndRef.current.scrollIntoView();
+		if (messagesEndRef.current) {
+			messagesEndRef.current.scrollIntoView();
+		}
 	});
 
 	React.useEffect(() => {
 		Socket().on('connect', () => {
-			Socket().emit('messages', { dialogId: state.dialogId });
+			Socket().emit('messages', {dialogId: state.dialogId});
 			Socket().on('messages', fetchMessages);
 		});
 	}, [
@@ -49,20 +51,30 @@ const Messages = () => {
 
 
 	return <Wrapper>
-        <Header dialog={dialogs[0]}/>
-		<ContentWrapper>
-			<DialogScroll>
-				{state.data.map((item, i) => {
-					return <ChatMessageBox key={i}
-										   item={item}/>;
-				})}
-				<div ref={messagesEndRef}/>
-			</DialogScroll>
-		</ContentWrapper>
-		<Footer
-			dialogId={state.dialogId}
-			action={setState}>
-		</Footer>
+
+		<Header
+			dialog={dialogs.data[0]}
+			modeCreate={dialogs.modeCreate}
+		/>
+		<React.Fragment>
+			<ContentWrapper>
+				{!dialogs.modeCreate
+					? <DialogScroll>
+						{state.data.map((item, i) => {
+							return <ChatMessageBox key={i}
+												   item={item}/>;
+						})}
+						<div ref={messagesEndRef}/>
+					</DialogScroll>
+					: <React.Fragment/>
+				}
+			</ContentWrapper>
+			<Footer
+				dialogId={state.dialogId}
+				action={setState}
+				modeCreate={dialogs.modeCreate}>
+			</Footer>
+		</React.Fragment>
 	</Wrapper>
 };
 

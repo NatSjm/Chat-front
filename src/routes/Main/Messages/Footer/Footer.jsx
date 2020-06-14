@@ -34,21 +34,30 @@ const Wrapper = styled(PrimaryForm)`
     }
 `;
 
-const Footer = ({dialogId, action}) => {
-	const onSubmit = React.useCallback((...rest) => onSubmitFunc(...rest, dialogId, action), [
+const Footer = ({dialogId, action, modeCreate}) => {
+	const onSubmit = React.useCallback((e) => {
+		e.preventDefault();
+		const value = e.currentTarget.elements[1].value;
+		return onSubmitFunc(value, dialogId, action);
+	}, [
 		dialogId,
 		action,
 	]);
 
 	return <Wrapper onSubmit={onSubmit}>
-		<FileUploadButton/>
-		<MessageTextArea
-			name="body"
-			placeholder="Type your message..."/>
-		<IconButton>
-			<FontAwesomeIcon icon={far.faSmile} size='2x'/>
-		</IconButton>
-		<MessageSendButton type="submit"/>
+		{!modeCreate
+			? <React.Fragment>
+				<FileUploadButton/>
+				< MessageTextArea
+					name="body"
+					placeholder="Type your message..."/>
+				<IconButton>
+					<FontAwesomeIcon icon={far.faSmile} size='2x'/>
+				</IconButton>
+				<MessageSendButton type="submit"/>
+			</React.Fragment>
+			: <React.Fragment/>
+		}
 	</Wrapper>;
 };
 

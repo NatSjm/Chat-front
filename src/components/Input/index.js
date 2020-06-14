@@ -6,6 +6,7 @@ import Secondary from './Secondary';
 import Email from './Email';
 import Password from './PassWord';
 import Name from './Name';
+import Dialog from './Dialog';
 
 export default Input;
 export {
@@ -15,5 +16,6 @@ export {
     Secondary,
     Password,
     Email,
-    Name
+    Name,
+    Dialog
 };

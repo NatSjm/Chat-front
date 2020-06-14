@@ -10,9 +10,12 @@ const Wrapper = styled(ChatHeaderWrapper)`
 	margin-right: 10px;
 	padding: 20px;	 
 `;
-const Header = () => {
+const Header = (props) => {
 	return <Wrapper>
-			<MenuButton/>
+			<MenuButton
+				onClick={props.onClick}
+				modeCreate={props.modeCreate}
+			     />
 			<SearchInput/>
 		</Wrapper>
 
