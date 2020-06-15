@@ -5,7 +5,6 @@ import {Flex} from 'components/Block';
 
 const Footer = styled(Flex)`
     min-height: 120px;
-    
     border-top: 1px solid rgba(120, 109, 134, 0.2);
     margin-top: auto;
     z-index: 20;

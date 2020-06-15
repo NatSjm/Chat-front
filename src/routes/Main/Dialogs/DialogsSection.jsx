@@ -33,46 +33,40 @@ const DialogsSection = ({history, children}) => {
 	}));
 	const [modeCreate, setModeCreate] = useState(false);
 
-
 	// onMount
 	React.useEffect(() => {
 		fetchDialogs(history, setState);
+
 	}, [
 		history,
-		setState,
 	]);
-	// React.useEffect(() => {
-	// //	console.log(users);
-	// }, [
-	// 	users
-	// ]);
+
 	const clickHandler = (e) => {
 		e.preventDefault();
 		setModeCreate(true);
 	};
+
 	React.useEffect(() => {
 		if (modeCreate) {
 			fetchUsers(setUsers);
 		}
-		console.log(modeCreate);
-		//console.log(state.data);
-
 	}, [
 		modeCreate,
-		//history,
 		setUsers
 	]);
-     //create
-	const onSubmit = React.useCallback((e) => {
+	//create
+	const submitForm = React.useCallback((e) => {
 		e.preventDefault();
-		const formdata   = new FormData(e.currentTarget);
+		const formdata = new FormData(e.currentTarget);
 		const name = formdata.get('name');
 		const users = formdata.getAll('users');
-		return createFunc(name, users);
-
-	}, [
-
-	]);
+		return createFunc(name, users, setState, setModeCreate);
+	}, []);
+	//cancel
+	const cancelCreate = (e) => {
+		e.preventDefault();
+		setModeCreate(false);
+	};
 
 	return <React.Fragment>
 		<Wrapper>
@@ -80,51 +74,46 @@ const DialogsSection = ({history, children}) => {
 				modeCreate={modeCreate}
 				onClick={clickHandler}/>
 			<ContentWrapper>
-
-
 				{!modeCreate
 					? <Scroll>
-						{state.data.map(({name, body = ''}, i) => {
-						return <DialogsItem
-						key={i}
-						name={name}
-						body={body} />
-					})
+						{state.data.sort((a, b) => a.updatedAt < b.updatedAt ? 1 : -1)
+							.map(({name, body = ''}, i) => {
+								return <DialogsItem
+									key={i}
+									name={name}
+									body={body}/>
+							})
 						}
 					</Scroll>
 					: <CreateForm
-					   onSubmit={onSubmit}>
+						onSubmit={submitForm}>
 						<DialogInput
-						name = 'name'/>
+							name='name'/>
 						<Scroll>
-						{users.data.map(({name, id}, i) => {
-							return <UsersItem
-								key={i}
-								name={name}
-								id={id}/>
-						})
-
-						}
+							{users.data.map(({name, id}, i) => {
+								return <UsersItem
+									key={i}
+									name={name}
+									id={id}/>
+							})
+							}
 						</Scroll>
 						<Footer>
-                        <Button
-							type='submit'/>
-                        <Button onclick={(e)=> e.preventDefault()}>Отмена</Button>
+							<Button type='submit'/>
+							<Button onClick={cancelCreate}>Отмена</Button>
 						</Footer>
 					</CreateForm>
 				}
-
-		</ContentWrapper>
-	</Wrapper>
-	{
-		((state.data.length > 0) || modeCreate)
-			? <Dialogs.Provider value={{data: state.data, modeCreate}}>
-				{children}
-			</Dialogs.Provider>
-			: <React.Fragment>
-			</React.Fragment>
-	}
-</React.Fragment>;
+			</ContentWrapper>
+		</Wrapper>
+		{
+			((state.data.length > 0) || modeCreate)
+				? <Dialogs.Provider value={{data: state.data, modeCreate}}>
+					{children}
+				</Dialogs.Provider>
+				: <React.Fragment>
+				</React.Fragment>
+		}
+	</React.Fragment>;
 };
-
 export default React.memo(withRouter(DialogsSection));

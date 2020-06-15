@@ -14,7 +14,7 @@ const Wrapper = styled(Primary)`
    }
 	`;
 let Dialog = (props) => {
-	return <Wrapper { ...props } type="text" />;
+	return <Wrapper { ...props }  type="text" />;
 };
 
 Dialog = React.memo(Dialog);

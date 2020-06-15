@@ -10,6 +10,6 @@ export {
 	Primary,
 	User,
 	Login,
-	DialogCreate
+	DialogCreate,
 	Upload,
 };

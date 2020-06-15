@@ -6,7 +6,7 @@ const dialogs = async (history, action = () => {}) => {
 		const split = document.cookie.split(';');
 		const accessToken = split[0].split('accessToken=')[1];
 		const response = await axios.get(`http://127.0.0.1:4444/dialogs?accessToken=${accessToken}`);
-		console.log(response);
+
 
 		action((state) => {
 			return {
