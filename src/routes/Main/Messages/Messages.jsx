@@ -10,7 +10,7 @@ import Header from './Header';
 import {Dialogs as ContextDialogs} from '../Dialogs/DialogsSection.jsx';
 import {
 	messages as fetchMessagesFunc,
-} from 'fetches';
+} from 'actions';
 
 
 const Wrapper = styled(Block)`

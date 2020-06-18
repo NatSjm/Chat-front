@@ -16,6 +16,8 @@ import {
 	users as fetchUsers,
 	dialogCreate as createFunc
 } from 'fetches';
+import {dialogs as dialogsAction} from 'actions';
+import Socket from 'components/Socket';
 
 
 export const Dialogs = React.createContext();
@@ -36,10 +38,25 @@ const DialogsSection = ({history, children}) => {
 	// onMount
 	React.useEffect(() => {
 		fetchDialogs(history, setState);
-
 	}, [
 		history,
 	]);
+	React.useEffect(() => {
+		Socket().on('connect', () => {
+			Socket().on('dialogs', (data) => {
+				dialogsAction(data, setState);
+			});
+		});
+	}, [
+		//dialogsAction,
+	]);
+	// React.useEffect(() => {
+	// 	console.log(state);
+	//
+	// }, [
+	// 	history,
+	// 	state
+	// ]);
 
 	const clickHandler = (e) => {
 		e.preventDefault();
@@ -60,6 +77,9 @@ const DialogsSection = ({history, children}) => {
 		const formdata = new FormData(e.currentTarget);
 		const name = formdata.get('name');
 		const users = formdata.getAll('users');
+		if (!name || !users) {
+			return alert('Введите данные!');
+		}
 		return createFunc(name, users, setState, setModeCreate);
 	}, []);
 	//cancel
@@ -76,13 +96,12 @@ const DialogsSection = ({history, children}) => {
 			<ContentWrapper>
 				{!modeCreate
 					? <Scroll>
-						{state.data.sort((a, b) => a.updatedAt < b.updatedAt ? 1 : -1)
-							.map(({name, body = ''}, i) => {
-								return <DialogsItem
-									key={i}
-									name={name}
-									body={body}/>
-							})
+						{state.data.map(({name, body = ''}, i) => {
+							return <DialogsItem
+								key={i}
+								name={name}
+								body={body}/>
+						})
 						}
 					</Scroll>
 					: <CreateForm

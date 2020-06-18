@@ -15,7 +15,7 @@ const users = async (action = () => {}) => {
 		});
 	}
 	catch (err) {
-		if (err.response.status === 401) {
+		if (err.response && err.response.status === 401) {
 			await login();
 			await users(action);
 		}

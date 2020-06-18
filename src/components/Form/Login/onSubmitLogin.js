@@ -9,7 +9,7 @@ const onSubmitLogin = (e, history) => {
 		const emailValue = email.value;
 		const passwordValue = password.value;
 
-		fetchLogin(history, emailValue, passwordValue);
+		fetchLogin(emailValue, passwordValue, history);
 	}
 };
 

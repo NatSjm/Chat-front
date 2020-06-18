@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const login = async (history = null, email, password) => {
+const login = async (email, password, history) => {
 	try {
 		const splitTokens = document.cookie.split(';');
 		let queryString = '';
