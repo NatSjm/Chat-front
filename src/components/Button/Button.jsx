@@ -21,7 +21,7 @@ let Button = ({ onClick, ...props }) => {
 		}} />;
 };
 
-Button = React.memo();
+Button = React.memo(Button);
 Button.defaultProps = {
 	onClick: () => {},
 };
