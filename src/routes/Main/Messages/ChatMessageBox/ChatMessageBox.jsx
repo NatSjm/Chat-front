@@ -29,7 +29,7 @@ const Wrapper = styled(Block)`
 const ChatMessageBox = ({item}) => {
 		const [showOptions, setShowOptions] = useState(false);
 		const [modeEdit, setModeEdit] = useState(false);
-		const [textValue, setTextValue] = useState(item.body);
+		const [textValue, setTextValue] = useState('');
 		const [updatedValue, setUpdatedValue] = useState(item.body);
 		const messageEditing = useRef(null);
 
@@ -38,6 +38,10 @@ const ChatMessageBox = ({item}) => {
 				//console.log('update function  ' + updatedValue);
 			}
 		}, [updatedValue, item.body]);
+
+		useEffect(() => {
+			setTextValue(item.body);
+		}, [item.body]);
 
 		const messageEdit = (e) => {
 			e.stopPropagation();

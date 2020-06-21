@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.button`
+const Button = styled.button`
 	cursor: pointer;
 	text-transform: uppercase;
 	text-align: center;
@@ -13,17 +13,17 @@ const Wrapper = styled.button`
 	}
 `;
 
-let Button = ({ onClick, ...props }) => {
-	return <Wrapper { ...props }
-		onClick={(e) => {
-			e.preventDefault();
-			onClick(e);
-		}} />;
-};
-
-Button = React.memo(Button);
-Button.defaultProps = {
-	onClick: () => {},
-};
+// let Button = ({ onClick, ...props }) => {
+// 	return <Wrapper { ...props }
+// 		onClick={(e) => {
+// 			e.preventDefault();
+// 			onClick(e);
+// 		}} />;
+// };
+//
+// Button = React.memo(Button);
+// Button.defaultProps = {
+// 	onClick: () => {},
+// };
 
 export default Button;

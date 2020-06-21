@@ -17,7 +17,7 @@ position: relative;
 const Header = ({dialog, modeCreate}) => {
 	const [showOptions, setShowOptions] = useState(false);
 	const [modeEdit, setModeEdit] = useState(false);
-	const [textValue, setTextValue] = useState(dialog.name);
+	const [textValue, setTextValue] = useState('');
 	const [updatedValue, setUpdatedValue] = useState(dialog.name);
 	const messageEditing = useRef(null);
 
@@ -26,6 +26,10 @@ const Header = ({dialog, modeCreate}) => {
 			//console.log('update function  ' + updatedValue);
 		}
 	}, [updatedValue, dialog.name]);
+
+	useEffect(() => {
+		setTextValue(dialog.name);
+	}, [dialog.name]);
 
 	const messageEdit = (e) => {
 		e.stopPropagation();

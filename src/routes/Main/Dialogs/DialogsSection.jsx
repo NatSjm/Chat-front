@@ -33,13 +33,22 @@ const DialogsSection = ({history, children}) => {
 	const [users, setUsers] = React.useState(() => ({
 		data: [],
 	}));
+	const [currentDialog, setCurrentDialog] = useState({});
 	const [modeCreate, setModeCreate] = useState(false);
+
+	React.useEffect(() => {
+	console.log(currentDialog);
+	}, [
+		currentDialog
+	]);
 
 	// onMount
 	React.useEffect(() => {
-		fetchDialogs(history, setState);
-	}, [
+		 fetchDialogs(history, setState, setCurrentDialog);
+		 }, [
 		history,
+		setState,
+		setCurrentDialog
 	]);
 	React.useEffect(() => {
 		Socket().on('connect', () => {
@@ -47,16 +56,8 @@ const DialogsSection = ({history, children}) => {
 				dialogsAction(data, setState);
 			});
 		});
-	}, [
-		//dialogsAction,
-	]);
-	// React.useEffect(() => {
-	// 	console.log(state);
-	//
-	// }, [
-	// 	history,
-	// 	state
-	// ]);
+	}, []);
+
 
 	const clickHandler = (e) => {
 		e.preventDefault();
@@ -87,6 +88,19 @@ const DialogsSection = ({history, children}) => {
 		e.preventDefault();
 		setModeCreate(false);
 	};
+	const changeDialog = (id) => (e) => {
+		e.preventDefault();
+		const current = state.data.filter( (item) => {
+			return item.id === id
+		});
+		const currentDialog = current[0];
+		setCurrentDialog(currentDialog);
+	};
+	// React.useEffect(() => {
+	// 	console.log();
+	// }, [
+	// 	history,
+	// ]);
 
 	return <React.Fragment>
 		<Wrapper>
@@ -96,11 +110,13 @@ const DialogsSection = ({history, children}) => {
 			<ContentWrapper>
 				{!modeCreate
 					? <Scroll>
-						{state.data.map(({name, body = ''}, i) => {
+						{state.data.map(({name, body = '', id}, i) => {
 							return <DialogsItem
 								key={i}
 								name={name}
-								body={body}/>
+								body={body}
+								isActive={!!(id === currentDialog.id)}
+								action={changeDialog(id)}/>
 						})
 						}
 					</Scroll>
@@ -127,7 +143,7 @@ const DialogsSection = ({history, children}) => {
 		</Wrapper>
 		{
 			((state.data.length > 0) || modeCreate)
-				? <Dialogs.Provider value={{data: state.data, modeCreate}}>
+				? <Dialogs.Provider value={{currentDialog, modeCreate}}>
 					{children}
 				</Dialogs.Provider>
 				: <React.Fragment>

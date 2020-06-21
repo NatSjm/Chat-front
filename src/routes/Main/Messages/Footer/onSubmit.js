@@ -5,7 +5,7 @@ import login from 'fetches/login.js';
 const onSubmit = async (value, dialogId, action) => {
 	const split = document.cookie.split(';');
 	const accessToken = split[0].split('accessToken=')[1];
-
+    console.log(Socket().id);
 
 	if (value) {
 		try {
@@ -13,7 +13,7 @@ const onSubmit = async (value, dialogId, action) => {
 				user_id: 2,
 				dialog_id: dialogId,
 				body: value,
-				id: Socket().id,
+				socketId: Socket().id,
 			});
 
 			action((currentState) => {

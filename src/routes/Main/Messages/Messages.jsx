@@ -24,10 +24,12 @@ const Wrapper = styled(Block)`
 
 const Messages = () => {
 	const dialogs = useContext(ContextDialogs);
+	console.log(dialogs.currentDialog.id);
 	const [state, setState] = React.useState(() => ({
 		data: [],
-		dialogId: dialogs.data[0].id,
+		//dialogId: dialogs.currentDialog.id,
 	}));
+	//console.log(state.dialogId);
 	const fetchMessages = React.useCallback((...rest) => fetchMessagesFunc(...rest, setState), [
 		setState,
 	]);
@@ -40,20 +42,21 @@ const Messages = () => {
 	});
 
 	React.useEffect(() => {
-		Socket().on('connect', () => {
-			Socket().emit('messages', {dialogId: state.dialogId});
+		//Socket().on('connect', () => {
+			Socket().emit('messages', {dialogId: dialogs.currentDialog.id});
 			Socket().on('messages', fetchMessages);
-		});
+		//});
 	}, [
 		fetchMessages,
-		state.dialogId,
+		dialogs.currentDialog.id
+		//state.dialogId,
 	]);
 
 
 	return <Wrapper>
 
 		<Header
-			dialog={dialogs.data[0]}
+			dialog={dialogs.currentDialog}
 			modeCreate={dialogs.modeCreate}
 		/>
 		<React.Fragment>
@@ -70,7 +73,7 @@ const Messages = () => {
 				}
 			</ContentWrapper>
 			<Footer
-				dialogId={state.dialogId}
+				dialogId={dialogs.currentDialog.id}
 				action={setState}
 				modeCreate={dialogs.modeCreate}>
 			</Footer>

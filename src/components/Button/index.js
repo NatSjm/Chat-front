@@ -1,6 +1,7 @@
 import Button from './Button.jsx';
 import Save from './Save';
 import IconButton from './IconButton';
+import ButtonPreventDefault from './ButtonPreventDefault';
 import { MenuButton, FileUploadButton, MessageSendButton, CameraButton} from './IconButton';
 
 
@@ -11,5 +12,6 @@ export {
     FileUploadButton,
     MessageSendButton,
     CameraButton,
+    ButtonPreventDefault,
     Save
 };

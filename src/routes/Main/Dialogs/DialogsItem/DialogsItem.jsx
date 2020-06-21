@@ -13,15 +13,21 @@ padding-top: 20px;
 padding-bottom: 20px;
 border-bottom: 2px solid rgba(120, 109, 134, 0.2);
 flex-wrap: nowrap;
+ ${({theme: {colors}}, isActive) => {
+     if (isActive)  return `
+     color: ${colors.blue};
+     `
+}};
 
 & h3{
 margin-bottom: 10px;
 cursor: pointer;
 }
 `;
-const DialogsItem = ({ name = '', body = '' }) => (
-    <Wrapper>
+const DialogsItem = ({ name = '', body = '', action},...props) => (
+    <Wrapper {...props} onClick={action}>
         <Avatar showOnline/>
+        {console.log(props.isActive)}
         <BriefTextBlock>
             <Headline3>
                 {name}
