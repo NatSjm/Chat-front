@@ -13,7 +13,6 @@ const onSubmitRegister = async (e, history) => {
 				password: password.value,
 				confirm_password: confirm_password.value,
 			});
-			console.log(response);
 			history.push('/login')
 		}
 		catch (err) {

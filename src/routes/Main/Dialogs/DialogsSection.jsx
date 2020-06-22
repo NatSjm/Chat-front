@@ -37,7 +37,7 @@ const DialogsSection = ({history, children}) => {
 	const [modeCreate, setModeCreate] = useState(false);
 
 	React.useEffect(() => {
-	console.log(currentDialog);
+
 	}, [
 		currentDialog
 	]);
@@ -96,11 +96,6 @@ const DialogsSection = ({history, children}) => {
 		const currentDialog = current[0];
 		setCurrentDialog(currentDialog);
 	};
-	// React.useEffect(() => {
-	// 	console.log();
-	// }, [
-	// 	history,
-	// ]);
 
 	return <React.Fragment>
 		<Wrapper>
@@ -115,7 +110,7 @@ const DialogsSection = ({history, children}) => {
 								key={i}
 								name={name}
 								body={body}
-								isActive={!!(id === currentDialog.id)}
+								isActive={(id === currentDialog.id)}
 								action={changeDialog(id)}/>
 						})
 						}

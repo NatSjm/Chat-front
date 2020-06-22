@@ -24,13 +24,12 @@ const Wrapper = styled(Block)`
 
 const Messages = () => {
 	const dialogs = useContext(ContextDialogs);
-	console.log(dialogs.currentDialog.id);
 	const [state, setState] = React.useState(() => ({
 		data: [],
-		//dialogId: dialogs.currentDialog.id,
 	}));
-	//console.log(state.dialogId);
-	const fetchMessages = React.useCallback((...rest) => fetchMessagesFunc(...rest, setState), [
+	const fetchMessages = React.useCallback((...rest) => {
+		fetchMessagesFunc(...rest, setState)
+	}, [
 		setState,
 	]);
 	const messagesEndRef = useRef(null);
@@ -43,8 +42,11 @@ const Messages = () => {
 
 	React.useEffect(() => {
 		//Socket().on('connect', () => {
-			Socket().emit('messages', {dialogId: dialogs.currentDialog.id});
+			if (dialogs.currentDialog.id > 0) {
+				Socket().emit('messages', {dialogId: dialogs.currentDialog.id});
+			}
 			Socket().on('messages', fetchMessages);
+
 		//});
 	}, [
 		fetchMessages,

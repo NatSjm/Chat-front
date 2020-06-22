@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -12,18 +12,4 @@ const Button = styled.button`
 	outline: none!important;
 	}
 `;
-
-// let Button = ({ onClick, ...props }) => {
-// 	return <Wrapper { ...props }
-// 		onClick={(e) => {
-// 			e.preventDefault();
-// 			onClick(e);
-// 		}} />;
-// };
-//
-// Button = React.memo(Button);
-// Button.defaultProps = {
-// 	onClick: () => {},
-// };
-
 export default Button;

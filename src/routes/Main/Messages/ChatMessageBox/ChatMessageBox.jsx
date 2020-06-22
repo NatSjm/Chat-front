@@ -35,7 +35,6 @@ const ChatMessageBox = ({item}) => {
 
 		useEffect(() => {
 			if (updatedValue !== item.body) {
-				//console.log('update function  ' + updatedValue);
 			}
 		}, [updatedValue, item.body]);
 
